@@ -30,4 +30,6 @@ $('a').click(function(event){
   event.preventDefault()
   var href = $(this).attr('href')
   goToPage(href)
+  if (href === "play")
+        startGame();
 })

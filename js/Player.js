@@ -1,38 +1,45 @@
 class Player extends Component {
     constructor(ctx, size, color, speed, x, y) {
-      super(ctx, size, color,0,0)
+      super(ctx);
+      this.color = color;
+      this.size = size;
       this.score = 0
       this.speed = speed;
       this.movement = null;
       this.rotation = null;
       this.x = x;
       this.y = y;
+      this.direction = null;
     }
-    move(direction) {
-      var xMin = -this.size
-      var xMax = this.ctx.canvas.width
-      var yMin = -this.size
-      var yMax = this.ctx.canvas.height
-      switch (direction) {
-        case "up":
-          this.y -= this.size / 10
-          if (this.y <= yMin) 
-            this.y = yMax
+    update() {
+      switch (this.direction) {
+        case "N":
+          this.y -= this.speed;
           break;
-        case "right":
-          this.x += this.size / 10
-          if (this.x >= xMax) 
-            this.x = xMin
+          case "NE":
+          this.y -= this.speed;
+          this.x += this.speed;
           break;
-        case "down":
-          this.y += this.size / 10
-          if (this.y >= yMax) 
-            this.y = yMin
+        case "E":
+          this.x += this.speed
           break;
-        case "left":
-          this.x -= this.size / 10
-          if (this.x <= xMin) 
-            this.x = xMax
+          case "SE":
+          this.y += this.speed;
+          this.x += this.speed;
+          break;
+        case "S":
+          this.y += this.speed
+          break;
+          case "SW":
+          this.y += this.speed;
+          this.x -= this.speed;
+          break;
+        case "W":
+          this.x -= this.speed
+          break;
+          case "NW":
+          this.y -= this.speed;
+          this.x -= this.speed;
           break;
       }
     }
