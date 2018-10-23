@@ -1,5 +1,5 @@
 class Spell extends Component {
-    constructor(spellName, x, y, color, direction, vx, vy){
+    constructor(spellName, x, y, color, direction, vx, vy, speed){
         super(ctx);
         this.spellName = spellName;
         this.x = x;
@@ -8,5 +8,6 @@ class Spell extends Component {
         this.direction = direction;
         this.vx = vx;
         this.vy = vy;
+        this.speed = speed;
     }
 }

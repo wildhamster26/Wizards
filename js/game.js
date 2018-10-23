@@ -31,30 +31,46 @@ document.onkeydown = function (event) {
   event.preventDefault()
   switch (event.which) {
       //PLAYER 1
-    case 38: // up arrow
+    case 104: // key 8 - N
     (checkCollision(p1, p2) || p1.y <=30) ? p1.direction = null : p1.direction = "N";
-      break
-    // case 105: // key 9 - NW
-    // (checkCollision(p1, p2) || (p1.y <=30 || p1.x >= ctx.canvas.width - 60)) ? p1.direction = null : p1.direction = "NE";
-    //   break
-    case 39: //right arrow
+    p1.vy = -1;
+    p1.vx = 0;
+    break
+    case 105: // key 9 - NW
+    (checkCollision(p1, p2) || (p1.y <=30 || p1.x >= ctx.canvas.width - 60)) ? p1.direction = null : p1.direction = "NE";
+    p1.vy = -1;
+    p1.vx = 1;
+    break
+    case 102: // key 6 - E
     (checkCollision(p1, p2) || p1.x >= ctx.canvas.width - 60) ? p1.direction = null : p1.direction = "E";
-      break
-    // case 99: // key 3 - SE
-    // (checkCollision(p1, p2) || (p1.y >=ctx.canvas.height - 60 || p1.x >= ctx.canvas.width - 60)) ? p1.direction = null : p1.direction = "SE";
-    //   break
-    case 40: // down arrow
+    p1.vx = 1;
+    p1.vy = 0;
+    break
+    case 99: // key 3 - SE
+    (checkCollision(p1, p2) || (p1.y >=ctx.canvas.height - 60 || p1.x >= ctx.canvas.width - 60)) ? p1.direction = null : p1.direction = "SE";
+    p1.vx = 1;
+    p1.vy = 1;
+    break
+    case 98: // key 2 - S
     (checkCollision(p1, p2) || p1.y >=ctx.canvas.height - 60) ? p1.direction = null : p1.direction = "S";
-      break
-    // case 97: //key 1 - SW
-    // (checkCollision(p1, p2) || (p1.y >=ctx.canvas.height - 60 || p1.x <= 30)) ? p1.direction = null : p1.direction = "SW";
-    //   break
-    case 37: //left arrow
+    p1.vy = 1;
+    p1.vx = 0;
+    break
+    case 97: //key 1 - SW
+    (checkCollision(p1, p2) || (p1.y >=ctx.canvas.height - 60 || p1.x <= 30)) ? p1.direction = null : p1.direction = "SW";
+    p1.vy = 1;
+    p1.vx = -1;
+    break
+    case 100: //left arrow
     (checkCollision(p1, p2) || p1.x <= 30) ? p1.direction = null : p1.direction = "W";
+    p1.vx = -1;
+    p1.vy = 0;
+    break
+    case 103: // key 7 - NW
+    (checkCollision(p1, p2) || (p1.x <= 30 || p1.y <=30)) ? p1.direction = null : p1.direction = "NW";
+    p1.vx = -1;
+    p1.vy = -1;
       break
-    // case 103: // key 7 - NW
-    // (checkCollision(p1, p2) || (p1.x <= 30 || p1.y <=30)) ? p1.direction = null : p1.direction = "NW";
-    //   break
       //PLAYER 2
     case 69:
     (checkCollision(p1, p2) || p2.y <=30) ? p2.direction = null : p2.direction = "N";
@@ -87,16 +103,16 @@ document.onkeyup = function (event) {
     event.preventDefault()
     switch (event.which) {
         //PLAYER 1 MOVEMENT
-      case 38:
+      case 104:
         p1.direction = null;
         break
-      case 39:
+      case 105:
         p1.direction =  null;
         break
-      case 40:
+      case 102:
         p1.direction = null;
         break
-      case 37:
+      case 99:
         p1.direction =  null;
         break
       case 98:

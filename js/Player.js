@@ -13,31 +13,31 @@ class Player extends Component {
             case "N":
                 this.y -= this.speed;
                 break;
-            // case "NE":
-            //     this.y -= this.speed;
-            //     this.x += this.speed;
-            //     break;
+            case "NE":
+                this.y -= this.speed;
+                this.x += this.speed;
+                break;
             case "E":
                 this.x += this.speed
                 break;
-            // case "SE":
-            //     this.y += this.speed;
-            //     this.x += this.speed;
-            //     break;
+            case "SE":
+                this.y += this.speed;
+                this.x += this.speed;
+                break;
             case "S":
                 this.y += this.speed
                 break;
-            // case "SW":
-            //     this.y += this.speed;
-            //     this.x -= this.speed;
-            //     break;
+            case "SW":
+                this.y += this.speed;
+                this.x -= this.speed;
+                break;
             case "W":
                 this.x -= this.speed
                 break;
-            // case "NW":
-            //     this.y -= this.speed;
-            //     this.x -= this.speed;
-            //     break;
+            case "NW":
+                this.y -= this.speed;
+                this.x -= this.speed;
+                break;
         }
         for (let i = 0; i < this.spells.length; i++) {
             this.spells[i].update();
@@ -54,7 +54,7 @@ class Player extends Component {
     cast(spellName) {
         // switch(spellName){
         //     case "Expelliarmus":
-                let spellType = new Spell(spellName, this.x, this.y, "red", this.direction, -2, -2)
+                let spellType = new Spell(spellName, this.x, this.y, "red", this.direction, this.vx, this.vy, 2)
                 this.spells.push(spellType);
         // }
 
