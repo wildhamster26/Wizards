@@ -1,46 +1,58 @@
 class Player extends Component {
     constructor(ctx, size, color, speed, x, y) {
-      super(ctx);
-      this.color = color;
-      this.size = size;
-      this.score = 0
-      this.speed = speed;
-      this.movement = null;
-      this.rotation = null;
-      this.x = x;
-      this.y = y;
-      this.direction = null;
+        super(ctx, size, color, x, y);
+        this.score = 0
+        this.speed = speed;
+        this.direction = null;
+        this.spells = [];
     }
     update() {
-      switch (this.direction) {
-        case "N":
-          this.y -= this.speed;
-          break;
-          case "NE":
-          this.y -= this.speed;
-          this.x += this.speed;
-          break;
-        case "E":
-          this.x += this.speed
-          break;
-          case "SE":
-          this.y += this.speed;
-          this.x += this.speed;
-          break;
-        case "S":
-          this.y += this.speed
-          break;
-          case "SW":
-          this.y += this.speed;
-          this.x -= this.speed;
-          break;
-        case "W":
-          this.x -= this.speed
-          break;
-          case "NW":
-          this.y -= this.speed;
-          this.x -= this.speed;
-          break;
-      }
+        switch (this.direction) {
+            case "N":
+                this.y -= this.speed;
+                break;
+            case "NE":
+                this.y -= this.speed;
+                this.x += this.speed;
+                break;
+            case "E":
+                this.x += this.speed
+                break;
+            case "SE":
+                this.y += this.speed;
+                this.x += this.speed;
+                break;
+            case "S":
+                this.y += this.speed
+                break;
+            case "SW":
+                this.y += this.speed;
+                this.x -= this.speed;
+                break;
+            case "W":
+                this.x -= this.speed
+                break;
+            case "NW":
+                this.y -= this.speed;
+                this.x -= this.speed;
+                break;
+        }
+        for (let i = 0; i < this.spells.length; i++) {
+            this.spells[i].update();
+        }
     }
-  }
+
+    draw() {
+        super.draw()
+        for (let i = 0; i < this.spells.length; i++) {
+            this.spells[i].draw();
+        }
+    }
+
+    cast(spellName) {
+        console.log("spell ", spellName);
+        
+        let spellType = new Spell(spellName, this.x, this.y, "red", this.direction, -2, -2)
+        this.spells.push(spellType);
+    }
+}

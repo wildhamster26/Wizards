@@ -23,7 +23,8 @@ function goToPage(link) {
   })
 }
 // Go to main page
-goToPage('home')
+// goToPage('home')
+goToPage('play')
 
 // Listen for click events on <a> and redirect to the right page
 $('a').click(function(event){

@@ -11,9 +11,7 @@ function drawEverything() {
   p2.draw()
 }
 
-// drawEverything();
 function checkCollision(a,b) {
-    // console.log("collision");
   return Math.abs(a.x - b.x) <= a.size && Math.abs(a.y - b.y) <= a.size
 }
 function startGame(){
@@ -33,7 +31,7 @@ document.onkeydown = function (event) {
   event.preventDefault()
   switch (event.which) {
       //PLAYER 1
-    case 104:
+    case 104: // 8
     (checkCollision(p1, p2) || p1.y <=30) ? p1.direction = null : p1.direction = "N";
       break
     case 105:
@@ -88,7 +86,7 @@ document.onkeydown = function (event) {
 document.onkeyup = function (event) {
     event.preventDefault()
     switch (event.which) {
-        //PLAYER 1
+        //PLAYER 1 MOVEMENT
       case 104:
         p1.direction = null;
         break
@@ -113,7 +111,19 @@ document.onkeyup = function (event) {
       case 103:
         p1.direction =  null;
         break
-        //PLAYER 2
+        //PLAYER 1 SPELLS
+      case 220:
+        p1.cast("Expelliarmus");
+        break;
+      case 221:
+        p1.cast("Reducto");
+        break;
+      case 219:
+        p1.cast("Septum-Sempra");
+        break;
+
+
+        //PLAYER 2 MOVEMENT
       case 69:
         p2.direction =null;
         break
@@ -139,4 +149,4 @@ document.onkeyup = function (event) {
         p2.direction = null;
         break
     }
-  }
+}
