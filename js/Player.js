@@ -216,7 +216,6 @@ class Player extends Component {
             },3000)});
             this.spells.push(Imperio);
             break;            
-             
         }
     }
 }

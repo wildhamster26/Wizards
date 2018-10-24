@@ -18,6 +18,13 @@ function checkCollision(a,b) {
 }
 function startGame(){
     intervalId = setInterval(function(){
+      //END GAME IF SOMEONE LOSES ALL HEALTH
+        if(p1.health <= 0 || p2.health <= 0){
+          ctx.clearRect(0, 0, canvas.width, canvas.height)
+          clearInterval(intervalId);
+          return;
+        }
+      //mAKE THE ANIMATIONS
         p1.update();
         p2.update();
         if (checkCollision(p1, p2)){
