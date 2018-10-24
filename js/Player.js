@@ -7,7 +7,9 @@ class Player extends Component {
         this.spells = [];
         this.vx = 0;
         this.vy = 0;
+        this.opponent = null;
     }
+    
     update() {
         switch (this.direction) {
             case "N":
@@ -40,7 +42,7 @@ class Player extends Component {
                 break;
         }
         for (let i = 0; i < this.spells.length; i++) {
-            this.spells[i].update();
+            this.spells[i].update(this.opponent);
         }
     }
 
@@ -54,7 +56,7 @@ class Player extends Component {
     cast(spellName) {
         switch(spellName){
             case "Expelliarmus":
-            let Expelliarmus = new Spell(spellName, this.x, this.y, "red", this.direction, this.vx, this.vy, 5, 4, 20);
+            let Expelliarmus = new Spell(spellName, this.x, this.y, "red", this.direction, this.vx, this.vy, 5, 4, 20, function(el){console.log(el);});
             this.spells.push(Expelliarmus);
             break;         
             case "Reducto":

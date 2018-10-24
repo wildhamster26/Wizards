@@ -15,8 +15,13 @@ class Component {
         this.ctx.fillRect(this.x, this.y, this.size, this.size)
         this.ctx.restore()
     }
-    update(){
+    update(opponent){
         this.x += this.vx*this.speed;
         this.y += this.vy*this.speed;
+        if(checkCollision(this, opponent)){
+            if (!!this.spellName === true){
+                this.effect(opponent);
+            }
+        };
     }
 }
