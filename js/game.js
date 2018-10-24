@@ -2,7 +2,7 @@ let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
 
 var p1 = new Player(ctx, 30, "red", 2, ctx.canvas.width - 100, ctx.canvas.height - 100, 100)
-var p2 = new Player(ctx, 30, "green", 2, 100, 100, 100);
+var p2 = new Player(ctx, 30, "green", 2, 800, 700, 100);
 p1.opponent = p2;
 p2.opponent = p1;
 let intervalId;

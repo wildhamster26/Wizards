@@ -57,27 +57,108 @@ class Player extends Component {
     cast(spellName) {
         switch(spellName){
             case "Expelliarmus":
-            let Expelliarmus = new Spell(spellName, this.x, this.y, "red", this.direction, this.vx, this.vy, 5, 4, 20, function(el){console.log(el);});
+            let Expelliarmus = new Spell(spellName, this.x, this.y, "red", this.direction, this.vx, this.vy, 5, 4, 20, 
+            function(el){
+                el.health -= 35;
+                el.cast = null;
+                setTimeout(function(){
+                    el.cast = function cast(spellName) {
+                        switch(spellName){
+                            case "Expelliarmus":
+                            let Expelliarmus = new Spell(spellName, this.x, this.y, "red", this.direction, this.vx, this.vy, 5, 4, 20, 
+                            function(el){
+                                el.health -= 35;
+                                el.cast = null;
+                                setTimeout(function(){
+                                }, 1000);
+                            });
+                            this.spells.push(Expelliarmus);
+                            break;         
+                            case "Reducto":
+                            let Reducto = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 10, 4, 20, 
+                            function(el){
+                                el.health -= 35;
+                                
+                            });
+                            this.spells.push(Reducto);
+                            break;            
+                            case "Sectum-Sempra":
+                            let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 1, 4, 20, 
+                            function(el){
+                                el.health -= 35;
+                                
+                            });
+                            this.spells.push(SectumSempra);
+                            break;            
+                            case "Avada-kedavra":
+                            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 2, 4, 20, 
+                            function(el){
+                                el.health -= 35;
+                                
+                            });
+                            this.spells.push(AvadaKedavra);
+                            break;            
+                            case "Crucio":
+                            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 4, 20, 
+                            function(el){
+                                el.health -= 35;
+                                
+                            });
+                            this.spells.push(Crucio);
+                            break;            
+                            case "Imperio":
+                            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 4, 20, 
+                            function(el){
+                                el.health -= 35;
+                                
+                            });
+                            this.spells.push(Imperio);
+                            break;            
+                        }
+                        
+                    }
+                }, 3000);
+            });
             this.spells.push(Expelliarmus);
             break;         
             case "Reducto":
-            let Reducto = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 10, 4, 20, function(el){console.log(el);});
+            let Reducto = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 10, 4, 20, 
+            function(el){
+                el.health -= 35;
+                
+            });
             this.spells.push(Reducto);
             break;            
             case "Sectum-Sempra":
-            let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 1, 4, 20, function(el){console.log(el);});
+            let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 1, 4, 20, 
+            function(el){
+                el.health -= 35;
+                
+            });
             this.spells.push(SectumSempra);
             break;            
             case "Avada-kedavra":
-            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 2, 4, 20, function(el){console.log(el);});
+            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 2, 4, 20, 
+            function(el){
+                el.health -= 35;
+                
+            });
             this.spells.push(AvadaKedavra);
             break;            
             case "Crucio":
-            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 4, 20, function(el){console.log(el);});
+            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 4, 20, 
+            function(el){
+                el.health -= 35;
+                
+            });
             this.spells.push(Crucio);
             break;            
             case "Imperio":
-            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 4, 20, function(el){console.log(el);});
+            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 4, 20, 
+            function(el){
+                el.health -= 35;
+                
+            });
             this.spells.push(Imperio);
             break;            
         }
