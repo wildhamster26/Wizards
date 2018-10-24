@@ -121,13 +121,50 @@ class Player extends Component {
             });
             this.spells.push(Expelliarmus);
             break;         
-            case "Reducto":
-            let Reducto = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 10, 4, 20, 
+            case "Stupefy":
+            let Stupefy = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 1, 4, 20, 
             function(el){
                 el.health -= 35;
-                
+                el.update = null;
+                setTimeout(function(){
+                    el.update = function update() {
+                        switch (this.direction) {
+                            case "N":
+                                this.y -= this.speed;
+                                break;
+                            case "NE":
+                                this.y -= this.speed;
+                                this.x += this.speed;
+                                break;
+                            case "E":
+                                this.x += this.speed
+                                break;
+                            case "SE":
+                                this.y += this.speed;
+                                this.x += this.speed;
+                                break;
+                            case "S":
+                                this.y += this.speed
+                                break;
+                            case "SW":
+                                this.y += this.speed;
+                                this.x -= this.speed;
+                                break;
+                            case "W":
+                                this.x -= this.speed
+                                break;
+                            case "NW":
+                                this.y -= this.speed;
+                                this.x -= this.speed;
+                                break;
+                        }
+                        for (let i = 0; i < this.spells.length; i++) {
+                            this.spells[i].update(this.opponent);
+                        }
+                    }
+                }, 1500);
             });
-            this.spells.push(Reducto);
+            this.spells.push(Stupefy);
             break;            
             case "Sectum-Sempra":
             let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 1, 4, 20, 

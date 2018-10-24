@@ -150,7 +150,7 @@ document.onkeyup = function (event) {
         p1.cast("Expelliarmus");
         break;
       case 221:
-        p1.cast("Reducto");
+        p1.cast("Stupefy");
         break;
       case 219:
         p1.cast("Sectum-Sempra");
