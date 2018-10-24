@@ -1,8 +1,8 @@
 let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
 
-var p1 = new Player(ctx, 30, "red", 2, ctx.canvas.width - 100, ctx.canvas.height - 100, 100)
-var p2 = new Player(ctx, 30, "green", 2, 800, 700, 100);
+var p1 = new Player(ctx, 30, "red", 2, ctx.canvas.width - 100, ctx.canvas.height - 100, 100, -1, -1)
+var p2 = new Player(ctx, 30, "green", 2, 100, 100, 100, 1, 1);
 p1.opponent = p2;
 p2.opponent = p1;
 let intervalId;
@@ -19,11 +19,11 @@ function checkCollision(a,b) {
 function startGame(){
     intervalId = setInterval(function(){
       //END GAME IF SOMEONE LOSES ALL HEALTH
-        // if(p1.health <= 0 || p2.health <= 0){
-        //   ctx.clearRect(0, 0, canvas.width, canvas.height)
-        //   clearInterval(intervalId);
-        //   return;
-        // }
+        if(p1.health <= 0 || p2.health <= 0){
+          ctx.clearRect(0, 0, canvas.width, canvas.height)
+          clearInterval(intervalId);
+          return;
+        }
       //MAKE THE ANIMATIONS
         p1.update();
         p2.update();

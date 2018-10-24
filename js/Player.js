@@ -1,14 +1,14 @@
 class Player extends Component {
-    constructor(ctx, size, color, speed, x, y, health) {
+    constructor(ctx, size, color, speed, x, y, health, vx, vy) {
         super(ctx, size, color, x, y);
         this.score = 0
         this.speed = speed;
         this.direction = null;
         this.spells = [];
-        this.vx = 0;
-        this.vy = 0;
         this.opponent = null;
         this.health = health;
+        this.vx = vx;
+        this.vy = vy;
         this.paralyze = false;
     }
     
@@ -81,7 +81,7 @@ class Player extends Component {
                                 el.health = 0;
                                 
                             });
-                            this.spells.push(AvadaKedavra);
+                            if (this.spells.length <=3) this.spells.push(AvadaKedavra);
                             break;            
                             case "Crucio":
                             let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 4, 20, 
@@ -92,7 +92,7 @@ class Player extends Component {
                                     el.paralyze = false;
                                 }, 2000);
                             });
-                            this.spells.push(Crucio);
+                            if (this.spells.length <=3) this.spells.push(Crucio);
                             break;            
                             case "Imperio":
                             let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 4, 20, 
@@ -140,13 +140,13 @@ class Player extends Component {
                                     }
                                     }
                             },3000)});
-                            this.spells.push(Imperio);
+                            if (this.spells.length <=3) this.spells.push(Imperio);
                             break;                   
                         }
                     }
-                }, 3000);
+                }, 4000);
             });
-            this.spells.push(Expelliarmus);
+            if (this.spells.length <=3) this.spells.push(Expelliarmus);
             break;         
             case "Stupefy":
             let Stupefy = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 6, 4, 20, 
@@ -157,21 +157,21 @@ class Player extends Component {
                     el.paralyze = false;
                 }, 2000);
             });
-            this.spells.push(Stupefy);
+            if (this.spells.length <=3) this.spells.push(Stupefy);
             break;            
             case "Sectum-Sempra":
             let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 4, 4, 20, 
             function(el){
                 el.health -= 50;
             });
-            this.spells.push(SectumSempra);
+            if (this.spells.length <=3) this.spells.push(SectumSempra);
             break;            
             case "Avada-kedavra":
             let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 3, 4, 20, 
             function(el){
                 el.health -= 0;
             });
-            this.spells.push(AvadaKedavra);
+            if (this.spells.length <=3) this.spells.push(AvadaKedavra);
             break;            
             case "Crucio":
             let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 4, 20, 
@@ -182,7 +182,7 @@ class Player extends Component {
                     el.paralyze = false;
                 }, 2000);
             });
-            this.spells.push(Crucio);
+            if (this.spells.length <=3) this.spells.push(Crucio);
             break;            
             case "Imperio":
             let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 4, 20, 
@@ -229,8 +229,8 @@ class Player extends Component {
                             this.spells[i].update(this.opponent);
                         }
                     }
-            },3000)});
-            this.spells.push(Imperio);
+            },2000)});
+            if (this.spells.length <=3) this.spells.push(Imperio);
             break;            
         }
     }

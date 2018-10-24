@@ -18,10 +18,11 @@ class Component {
     update(opponent){
         this.x += this.vx*this.speed;
         this.y += this.vy*this.speed;
+        if (this.x > this.ctx.canvas.width || this.x < 0 || this.y < 0 || this.y > this.ctx.canvas.height) this.size = 0;
+        //If spell hits a player, it disappears
         if(checkCollision(this, opponent)){
             if (!!this.spellName === true){
                 this.effect(opponent);
-                console.log("from the collision test for spells, this is:", this);
                 this.size = 0;
             }
         };
