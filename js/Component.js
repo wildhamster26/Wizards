@@ -20,8 +20,9 @@ class Component {
         this.y += this.vy*this.speed;
         if(checkCollision(this, opponent)){
             if (!!this.spellName === true){
-                console.log(this.effect);
                 this.effect(opponent);
+                console.log("from the collision test for spells, this is:", this);
+                this.size = 0;
             }
         };
     }

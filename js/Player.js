@@ -14,7 +14,7 @@ class Player extends Component {
     
     update(paralyze) {
         //I'M HERE! NEED TO GET THE PARALYZE TO WORK AND IMMOBILIZE THE PARALYZED PLAYER
-        if(paralyze) return;
+        if(this.paralyze) return;
         switch (this.direction) {
             case "N":
                 this.y -= this.speed;
@@ -45,8 +45,15 @@ class Player extends Component {
                 this.x -= this.speed;
                 break;
         }
-        for (let i = 0; i < this.spells.length; i++) {
+        this.x = Math.max(0, this.x);
+        this.x = Math.min(this.ctx.canvas.width-this.size, this.x);
+        this.y = Math.max(0, this.y);
+        this.y = Math.min(this.ctx.canvas.height-this.size, this.y);
+        for (let i = this.spells.length-1; i >= 0; i--) {
             this.spells[i].update(this.opponent);
+            if (this.spells[i].size === 0 ) {
+                this.spells.splice(i,1);
+            } 
         }
     }
 
@@ -71,7 +78,7 @@ class Player extends Component {
                             case "Avada-kedavra":
                             let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 2, 4, 20, 
                             function(el){
-                                el.health -= 35;
+                                el.health = 0;
                                 
                             });
                             this.spells.push(AvadaKedavra);
@@ -80,7 +87,10 @@ class Player extends Component {
                             let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 4, 20, 
                             function(el){
                                 el.health -= 35;
-                                
+                                el.paralyze = true;
+                                setTimeout(function(){
+                                    el.paralyze = false;
+                                }, 2000);
                             });
                             this.spells.push(Crucio);
                             break;            
@@ -94,7 +104,7 @@ class Player extends Component {
                                     }
                                     setTimeout(function(){
                                         el.update = function(paralyze) {
-                                            if(paralyze) return false;
+                                            if(this.paralyze) return false;
                                             switch (this.direction) {
                                                 case "N":
                                                     this.y -= this.speed;
@@ -104,7 +114,7 @@ class Player extends Component {
                                                     this.x += this.speed;
                                                     break;
                                                 case "E":
-                                                    this.x += this.speed
+                                                    this.x += this.speed;
                                                     break;
                                                 case "SE":
                                                     this.y += this.speed;
@@ -143,6 +153,9 @@ class Player extends Component {
             function(el){
                 el.health -= 35;
                 el.paralyze = true;
+                setTimeout(function(){
+                    el.paralyze = false;
+                }, 2000);
             });
             this.spells.push(Stupefy);
             break;            
@@ -165,6 +178,9 @@ class Player extends Component {
             function(el){
                 el.health -= 50;
                 el.paralyze = true;
+                setTimeout(function(){
+                    el.paralyze = false;
+                }, 2000);
             });
             this.spells.push(Crucio);
             break;            
