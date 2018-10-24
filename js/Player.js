@@ -1,5 +1,5 @@
 class Player extends Component {
-    constructor(ctx, size, color, speed, x, y) {
+    constructor(ctx, size, color, speed, x, y, health) {
         super(ctx, size, color, x, y);
         this.score = 0
         this.speed = speed;
@@ -8,6 +8,7 @@ class Player extends Component {
         this.vx = 0;
         this.vy = 0;
         this.opponent = null;
+        this.health = health;
     }
     
     update() {
@@ -60,23 +61,23 @@ class Player extends Component {
             this.spells.push(Expelliarmus);
             break;         
             case "Reducto":
-            let Reducto = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 10, 4, 20);
+            let Reducto = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 10, 4, 20, function(el){console.log(el);});
             this.spells.push(Reducto);
             break;            
             case "Sectum-Sempra":
-            let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 1, 4, 20);
+            let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 1, 4, 20, function(el){console.log(el);});
             this.spells.push(SectumSempra);
             break;            
             case "Avada-kedavra":
-            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 2);
+            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 2, 4, 20, function(el){console.log(el);});
             this.spells.push(AvadaKedavra);
             break;            
             case "Crucio":
-            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5);
+            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 4, 20, function(el){console.log(el);});
             this.spells.push(Crucio);
             break;            
             case "Imperio":
-            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5);
+            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 4, 20, function(el){console.log(el);});
             this.spells.push(Imperio);
             break;            
         }

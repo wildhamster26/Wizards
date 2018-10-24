@@ -20,6 +20,7 @@ class Component {
         this.y += this.vy*this.speed;
         if(checkCollision(this, opponent)){
             if (!!this.spellName === true){
+                console.log(this.effect);
                 this.effect(opponent);
             }
         };
