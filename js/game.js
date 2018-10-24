@@ -151,7 +151,7 @@ document.onkeyup = function (event) {
         p1.cast("Reducto");
         break;
       case 219:
-        p1.cast("Septum-Sempra");
+        p1.cast("Sectum-Sempra");
         break;
 
 
