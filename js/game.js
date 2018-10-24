@@ -1,8 +1,8 @@
 let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
 
-var p1 = new Player(ctx, 30, "red", 2, ctx.canvas.width - 100, ctx.canvas.height - 100, 100, -1, -1)
-var p2 = new Player(ctx, 30, "green", 2, 100, 100, 100, 1, 1);
+var p1 = new Player(ctx, 30, 30, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 100, -1, -1, 2)
+var p2 = new Player(ctx, 30, 30, "green", 100, 100, 100, 1, 1, 2);
 p1.opponent = p2;
 p2.opponent = p1;
 let intervalId;
@@ -14,7 +14,7 @@ function drawEverything() {
 }
 
 function checkCollision(a,b) {
-  return Math.abs(a.x - b.x) <= a.size && Math.abs(a.y - b.y) <= a.size
+  return Math.abs(a.x - b.x) <= b.width && Math.abs(a.y - b.y) <= b.height
 }
 function startGame(){
     intervalId = setInterval(function(){

@@ -1,6 +1,8 @@
 class Player extends Component {
-    constructor(ctx, size, color, speed, x, y, health, vx, vy) {
-        super(ctx, size, color, x, y);
+    constructor(ctx, width, height, color, x, y, health, vx, vy, speed) {
+        super(ctx, width, height, color, x, y);
+        // this.width = width;
+        // this.height = height;
         this.score = 0
         this.speed = speed;
         this.direction = null;
@@ -46,12 +48,12 @@ class Player extends Component {
                 break;
         }
         this.x = Math.max(0, this.x);
-        this.x = Math.min(this.ctx.canvas.width-this.size, this.x);
+        this.x = Math.min(this.ctx.canvas.width-this.width, this.x);
         this.y = Math.max(0, this.y);
-        this.y = Math.min(this.ctx.canvas.height-this.size, this.y);
+        this.y = Math.min(this.ctx.canvas.height-this.height, this.y);
         for (let i = this.spells.length-1; i >= 0; i--) {
             this.spells[i].update(this.opponent);
-            if (this.spells[i].size === 0 ) {
+            if (this.spells[i].width === 0 ) {
                 this.spells.splice(i,1);
             } 
         }
@@ -68,7 +70,7 @@ class Player extends Component {
     cast(spellName) {
         switch(spellName){
             case "Expelliarmus":
-            let Expelliarmus = new Spell(spellName, this.x, this.y, "red", this.direction, this.vx, this.vy, 10, 4, 20, 
+            let Expelliarmus = new Spell(spellName, this.x, this.y, "red", this.direction, this.vx, this.vy, 10, 30, 10, 
             function(el){
                 el.health -= 35;
                 el.cast = null;
@@ -76,15 +78,15 @@ class Player extends Component {
                     el.cast = function cast(spellName) {
                         switch(spellName){
                             case "Avada-kedavra":
-                            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 2, 4, 20, 
+                            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 2, 4, 4, 
                             function(el){
-                                el.health = 0;
+                                el.health = -1;
                                 
                             });
-                            if (this.spells.length <=3) this.spells.push(AvadaKedavra);
+                            if (this.spells.length < 3) this.spells.push(AvadaKedavra);
                             break;            
                             case "Crucio":
-                            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 4, 20, 
+                            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 10, 20, 
                             function(el){
                                 el.health -= 35;
                                 el.paralyze = true;
@@ -92,10 +94,10 @@ class Player extends Component {
                                     el.paralyze = false;
                                 }, 2000);
                             });
-                            if (this.spells.length <=3) this.spells.push(Crucio);
+                            if (this.spells.length < 3) this.spells.push(Crucio);
                             break;            
                             case "Imperio":
-                            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 4, 20, 
+                            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 10, 10, 
                                 function(el){
                                     el.health -= 35;
                                     el.update = function(){
@@ -140,16 +142,16 @@ class Player extends Component {
                                     }
                                     }
                             },3000)});
-                            if (this.spells.length <=3) this.spells.push(Imperio);
+                            if (this.spells.length < 3) this.spells.push(Imperio);
                             break;                   
                         }
                     }
                 }, 4000);
             });
-            if (this.spells.length <=3) this.spells.push(Expelliarmus);
+            if (this.spells.length < 3) this.spells.push(Expelliarmus);
             break;         
             case "Stupefy":
-            let Stupefy = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 6, 4, 20, 
+            let Stupefy = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 10, 8, 20, 
             function(el){
                 el.health -= 35;
                 el.paralyze = true;
@@ -157,24 +159,24 @@ class Player extends Component {
                     el.paralyze = false;
                 }, 2000);
             });
-            if (this.spells.length <=3) this.spells.push(Stupefy);
+            if (this.spells.length < 3) this.spells.push(Stupefy);
             break;            
             case "Sectum-Sempra":
-            let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 4, 4, 20, 
+            let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 8, 20, 20, 
             function(el){
                 el.health -= 50;
             });
-            if (this.spells.length <=3) this.spells.push(SectumSempra);
+            if (this.spells.length < 3) this.spells.push(SectumSempra);
             break;            
             case "Avada-kedavra":
-            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 3, 4, 20, 
+            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 3, 4, 4, 
             function(el){
-                el.health -= 0;
+                el.health = -1;
             });
-            if (this.spells.length <=3) this.spells.push(AvadaKedavra);
+            if (this.spells.length < 3) this.spells.push(AvadaKedavra);
             break;            
             case "Crucio":
-            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 4, 20, 
+            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 10, 20, 
             function(el){
                 el.health -= 50;
                 el.paralyze = true;
@@ -182,10 +184,10 @@ class Player extends Component {
                     el.paralyze = false;
                 }, 2000);
             });
-            if (this.spells.length <=3) this.spells.push(Crucio);
+            if (this.spells.length < 3) this.spells.push(Crucio);
             break;            
             case "Imperio":
-            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 4, 20, 
+            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 10, 10, 
             function(el){
                 el.health -= 35;
                 el.update = function(){
@@ -230,7 +232,7 @@ class Player extends Component {
                         }
                     }
             },2000)});
-            if (this.spells.length <=3) this.spells.push(Imperio);
+            if (this.spells.length < 3) this.spells.push(Imperio);
             break;            
         }
     }
