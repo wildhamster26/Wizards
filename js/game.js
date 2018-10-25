@@ -32,101 +32,162 @@ function startGame(){
         p1.update();
         p2.update();
         if (checkCollision(p1, p2)){
-            p1.direction = null;
-            p2.direction = null;
+          if (checkCollision(p1, p2)) {
+            switch (p1.direction) {
+              case "N":
+                p1.y += 5;
+                break;
+              case "NE":
+                p1.y += 5;
+                p1.x -= 5;
+                break;
+              case "E":
+                p1.x -= 5;
+                break;
+              case "SE":
+                p1.y -= 5;
+                p1.x -= 5;
+                break;
+              case "S":
+                p1.y -= 5;
+                break;
+              case "SW":
+                p1.y -= 5;
+                p1.x += 5;
+                break;
+              case "W":
+                p1.x += 5;
+                break;
+              case "NW":
+                p1.y += 5;
+                p1.x += 5;
+                break;
+            }
+            switch (p2.direction) {
+              case "N":
+                p2.y += 5;
+                break;
+              case "NE":
+                p2.y += 5;
+                p2.x -= 5;
+                break;
+              case "E":
+                p2.x -= 5;
+                break;
+              case "SE":
+                p2.y -= 5;
+                p2.x -= 5;
+                break;
+              case "S":
+                p2.y -= 5;
+                break;
+              case "SW":
+                p2.y -= 5;
+                p2.x += 5;
+                break;
+              case "W":
+                p2.x += 5;
+                break;
+              case "NW":
+                p2.y += 5;
+                p2.x += 5;
+                break;
+            }
+          }
         };
         drawEverything()
     }, 1000/50)
 }
 
 
-document.onkeydown = function (event) {
-  event.preventDefault()
+document.onkeydown = function(event) {
+  event.preventDefault();
   switch (event.which) {
-      //PLAYER 1
+    //PLAYER 1
     case 104: // key 8 - N
-    (checkCollision(p1, p2)) ? p1.direction = null : p1.direction = "N";
-    p1.vy = -1;
-    p1.vx = 0;
-    break
+      p1.direction = "N";
+      p1.vy = -1;
+      p1.vx = 0;
+      break;
     case 105: // key 9 - NW
-    (checkCollision(p1, p2)) ? p1.direction = null : p1.direction = "NE";
-    p1.vy = -1;
-    p1.vx = 1;
-    break
+      p1.direction = "NE";
+      p1.vy = -1;
+      p1.vx = 1;
+      break;
     case 102: // key 6 - E
-    (checkCollision(p1, p2)) ? p1.direction = null : p1.direction = "E";
-    p1.vx = 1;
-    p1.vy = 0;
-    break
+      p1.direction = "E";
+      p1.vx = 1;
+      p1.vy = 0;
+      break;
     case 99: // key 3 - SE
-    (checkCollision(p1, p2) ) ? p1.direction = null : p1.direction = "SE";
-    p1.vx = 1;
-    p1.vy = 1;
-    break
+      p1.direction = "SE";
+      p1.vx = 1;
+      p1.vy = 1;
+      break;
     case 98: // key 2 - S
-    (checkCollision(p1, p2)) ? p1.direction = null : p1.direction = "S";
-    p1.vy = 1;
-    p1.vx = 0;
-    break
+      p1.direction = "S";
+      p1.vy = 1;
+      p1.vx = 0;
+      break;
     case 97: //key 1 - SW
-    (checkCollision(p1, p2)) ? p1.direction = null : p1.direction = "SW";
-    p1.vy = 1;
-    p1.vx = -1;
-    break
+      p1.direction = "SW";
+      p1.vy = 1;
+      p1.vx = -1;
+      break;
     case 100: //left arrow
-    (checkCollision(p1, p2)) ? p1.direction = null : p1.direction = "W";
-    p1.vx = -1;
-    p1.vy = 0;
-    break
+      p1.direction = "W";
+      p1.vx = -1;
+      p1.vy = 0;
+      break;
     case 103: // key 7 - NW
-    (checkCollision(p1, p2)) ? p1.direction = null : p1.direction = "NW";
-    p1.vx = -1;
-    p1.vy = -1;
-      break
-      //PLAYER 2
+      p1.direction = "NW";
+      p1.vx = -1;
+      p1.vy = -1;
+      break;
+
+    //PLAYER 2
     case 69: // key e - N
-    (checkCollision(p1, p2)) ? p2.direction = null : p2.direction = "N";
-    p2.vy = -1;
-    p2.vx = 0;
-    break
+      p2.direction = "N";
+      p2.vy = -1;
+      p2.vx = 0;
+      break;
     case 82: // key r - NE
-    (checkCollision(p1, p2)) ? p2.direction = null : p2.direction = "NE";
-    p2.vy = -1;
-    p2.vx = 1;
-      break
+      p2.direction = "NE";
+      p2.vy = -1;
+      p2.vx = 1;
+      break;
     case 70: // key f - E
-    (checkCollision(p1, p2)) ? p2.direction = null : p2.direction = "E";
+      p2.direction = "E";
       p2.vy = 0;
       p2.vx = 1;
-      break
+      break;
     case 86: // key v - SE
-    (checkCollision(p1, p2)) ? p2.direction = null : p2.direction = "SE";
+      p2.direction = "SE";
       p2.vy = 1;
       p2.vx = 1;
-      break
+      break;
     case 67: // key c - S
-    (checkCollision(p1, p2)) ? p2.direction = null : p2.direction = "S";
+      p2.direction = "S";
       p2.vy = 1;
       p2.vx = 0;
-      break
+      break;
     case 88: // key x - SW
-    (checkCollision(p1, p2)) ? p2.direction = null : p2.direction = "SW";
+      p2.direction = "SW";
       p2.vy = 1;
       p2.vx = -1;
-      break
+      break;
     case 83: // key s - W
-    (checkCollision(p1, p2)) ? p2.direction = null : p2.direction = "W";
+      p2.direction = "W";
       p2.vy = 0;
       p2.vx = -1;
-      break
+      break;
     case 87: // key w - NW
-    (checkCollision(p1, p2)) ? p2.direction = null : p2.direction = "NW";
+      p2.direction = "NW";
       p2.vy = -1;
       p2.vx = -1;
-      break
+      break;
   }
-}
+};
 
 document.onkeyup = function (event) {
     event.preventDefault()
