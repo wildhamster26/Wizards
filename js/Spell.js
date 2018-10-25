@@ -19,8 +19,20 @@ class Spell extends Component {
         this.tickCount = 0;
         this.ticksPerFrame = 5;
     }
-
+    
+    setFrameIndexY(){
+        if (this.vx === -1)
+            this.frameIndexY = 50;
+        else if (this.vx === 1)
+            this.frameIndexY = 100;
+        else if (this.vy === 1)
+            this.frameIndexY = 0;
+        else
+            this.frameIndexY = 150;
+    }
+    
     draw(){
+        this.setFrameIndexY();
         super.tickFrame();
         this.ctx.drawImage(this.image, this.frameIndex*50, this.frameIndexY, 50, 50, this.x, this.y, 32, 32);
     }
