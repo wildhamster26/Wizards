@@ -1,5 +1,5 @@
 class Player extends Component {
-    constructor(ctx, width, height, color, x, y, health, vx, vy, speed) {
+    constructor(ctx, width, height, color, x, y, health, vx, vy, speed, imageSrc) {
         super(ctx, width, height, color, x, y);
         // this.width = width;
         // this.height = height;
@@ -12,39 +12,51 @@ class Player extends Component {
         this.vx = vx;
         this.vy = vy;
         this.paralyze = false;
+        this.image = new Image();
+        this.image.src = imageSrc;
+        this.frameIndex = 0;
+        this.tickCount = 0;
+        this.ticksPerFrame = 5;
     }
     
-    update(paralyze) {
-        //I'M HERE! NEED TO GET THE PARALYZE TO WORK AND IMMOBILIZE THE PARALYZED PLAYER
+    update() {
         if(this.paralyze) return;
         switch (this.direction) {
             case "N":
                 this.y -= this.speed;
+                this.tickCount++;
                 break;
             case "NE":
                 this.y -= this.speed;
                 this.x += this.speed;
+                this.tickCount++;
                 break;
             case "E":
-                this.x += this.speed
+                this.x += this.speed;
+                this.tickCount++;
                 break;
             case "SE":
                 this.y += this.speed;
                 this.x += this.speed;
+                this.tickCount++;
                 break;
             case "S":
-                this.y += this.speed
+                this.y += this.speed;
+                this.tickCount++;
                 break;
             case "SW":
                 this.y += this.speed;
                 this.x -= this.speed;
+                this.tickCount++;
                 break;
             case "W":
-                this.x -= this.speed
+                this.x -= this.speed;
+                this.tickCount++;
                 break;
             case "NW":
                 this.y -= this.speed;
                 this.x -= this.speed;
+                this.tickCount++;
                 break;
         }
         this.x = Math.max(0, this.x);
@@ -60,7 +72,7 @@ class Player extends Component {
     }
 
     draw() {
-        super.draw()
+        this.ctx.drawImage(this.image, 0, 0, 32, 32, this.x, this.y, 32, 32);
         for (let i = 0; i < this.spells.length; i++) {
             this.spells[i].draw();
         }

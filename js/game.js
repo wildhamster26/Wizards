@@ -1,14 +1,18 @@
 let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
 
-var p1 = new Player(ctx, 30, 30, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 100, -1, -1, 2)
-var p2 = new Player(ctx, 30, 30, "green", 100, 100, 100, 1, 1, 2);
+var p1 = new Player(ctx, 30, 30, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 100, -1, -1, 2, "./Images/harry.png")
+var p2 = new Player(ctx, 30, 30, "green", 100, 100, 100, 1, 1, 2, "./Images/voldemort.png");
 p1.opponent = p2;
 p2.opponent = p1;
 let intervalId;
 
 function drawEverything() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.save()
+  ctx.fillStyle="#71BE76";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.restore();
   p1.draw()
   p2.draw()
 }
