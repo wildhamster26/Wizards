@@ -16,6 +16,19 @@ class Component {
         this.ctx.fillRect(this.x, this.y, this.width, this.height)
         this.ctx.restore()
     }
+
+    tickFrame() {
+        this.tickCount++;
+            if(this.tickCount > this.ticksPerFrame){
+                this.tickCount = 0;
+                if(this.frameIndex < 2)
+                    this.frameIndex++;
+                else
+                    this.frameIndex = 0;
+            }
+
+    }
+
     update(opponent){
         this.x += this.vx*this.speed;
         this.y += this.vy*this.speed;

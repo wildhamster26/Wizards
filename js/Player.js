@@ -12,25 +12,15 @@ class Player extends Component {
         this.vx = vx;
         this.vy = vy;
         this.paralyze = false;
-        this.image = new Image();
-        this.image.src = imageSrc;
+        this.character = new Image();
+        this.character.src = imageSrc;
         this.frameIndex = 0;
         this.frameIndexY = 0;
         this.tickCount = 0;
         this.ticksPerFrame = 5;
     }
 
-    tickFrame() {
-        this.tickCount++;
-            if(this.tickCount > this.ticksPerFrame){
-                this.tickCount = 0;
-                if(this.frameIndex < 2)
-                    this.frameIndex++;
-                else
-                    this.frameIndex = 0;
-            }
-
-    }
+    
     
     update() {
         if(this.paralyze) return;
@@ -38,46 +28,46 @@ class Player extends Component {
             case "N":
                 this.y -= this.speed;
                 this.frameIndexY = 96;
-                this.tickFrame();
+                super.tickFrame();
                 break;
             case "NE":
                 this.y -= this.speed;
                 this.x += this.speed;
                 this.frameIndexY = 64;
-                this.tickFrame();
+                super.tickFrame();
                 break;
             case "E":
                 this.x += this.speed;
                 this.frameIndexY = 64;
-                this.tickFrame();
+                super.tickFrame();
                 break;
             case "SE":
                 this.y += this.speed;
                 this.x += this.speed;
                 this.frameIndexY = 64;
-                this.tickFrame();
+                super.tickFrame();
                 break;
             case "S":
                 this.y += this.speed;
                 this.frameIndexY = 0;
-                this.tickFrame();
+                super.tickFrame();
                 break;
             case "SW":
                 this.y += this.speed;
                 this.x -= this.speed;
                 this.frameIndexY = 32;
-                this.tickFrame();
+                super.tickFrame();
                 break;
             case "W":
                 this.x -= this.speed;
                 this.frameIndexY = 32;
-                this.tickFrame();
+                super.tickFrame();
                 break;
             case "NW":
                 this.y -= this.speed;
                 this.x -= this.speed;
                 this.frameIndexY = 32;
-                this.tickFrame();
+                super.tickFrame();
                 break;
         }
         this.x = Math.max(0, this.x);
@@ -93,7 +83,7 @@ class Player extends Component {
     }
 
     draw() {
-        this.ctx.drawImage(this.image, this.frameIndex*32, this.frameIndexY, 32, 32, this.x, this.y, 32, 32);
+        this.ctx.drawImage(this.character, this.frameIndex*32, this.frameIndexY, 32, 32, this.x, this.y, 32, 32);
         for (let i = 0; i < this.spells.length; i++) {
             this.spells[i].draw();
         }
@@ -103,7 +93,7 @@ class Player extends Component {
     cast(spellName) {
         switch(spellName){
             case "Expelliarmus":
-            let Expelliarmus = new Spell(spellName, this.x, this.y, "red", this.direction, this.vx, this.vy, 10, 30, 10, 
+            let Expelliarmus = new Spell(spellName, this.x, this.y, "red", this.direction, this.vx, this.vy, 10, 30, 10, "./Images/orb_spell.png",
             function(el){
                 el.health -= 35;
                 el.cast = null;
@@ -111,7 +101,7 @@ class Player extends Component {
                     el.cast = function cast(spellName) {
                         switch(spellName){
                             case "Avada-kedavra":
-                            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 2, 4, 4, 
+                            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 2, 4, 4, "./Images/blue_spell.png",
                             function(el){
                                 el.health = -1;
                                 
@@ -119,7 +109,7 @@ class Player extends Component {
                             if (this.spells.length < 3) this.spells.push(AvadaKedavra);
                             break;            
                             case "Crucio":
-                            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 10, 20, 
+                            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 10, 20, "./Images/blue_spell.png",
                             function(el){
                                 el.health -= 35;
                                 el.paralyze = true;
@@ -130,7 +120,7 @@ class Player extends Component {
                             if (this.spells.length < 3) this.spells.push(Crucio);
                             break;            
                             case "Imperio":
-                            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 10, 10, 
+                            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 10, 10, "./Images/blue_spell.png",
                                 function(el){
                                     el.health -= 35;
                                     el.update = function(){
@@ -184,7 +174,7 @@ class Player extends Component {
             if (this.spells.length < 3) this.spells.push(Expelliarmus);
             break;         
             case "Stupefy":
-            let Stupefy = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 10, 8, 20, 
+            let Stupefy = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 10, 8, 20, "./Images/orb_spell.png",
             function(el){
                 el.health -= 35;
                 el.paralyze = true;
@@ -195,21 +185,21 @@ class Player extends Component {
             if (this.spells.length < 3) this.spells.push(Stupefy);
             break;            
             case "Sectum-Sempra":
-            let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 8, 20, 20, 
+            let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 8, 20, 20, "./Images/orb_spell.png",
             function(el){
                 el.health -= 50;
             });
             if (this.spells.length < 3) this.spells.push(SectumSempra);
             break;            
             case "Avada-kedavra":
-            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 3, 4, 4, 
+            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 3, 4, 4, "./Images/blue_spell.png",
             function(el){
                 el.health = -1;
             });
             if (this.spells.length < 3) this.spells.push(AvadaKedavra);
             break;            
             case "Crucio":
-            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 10, 20, 
+            let Crucio = new Spell(spellName, this.x, this.y, "black", this.direction, this.vx, this.vy, 5, 10, 20, "./Images/blue_spell.png",
             function(el){
                 el.health -= 50;
                 el.paralyze = true;
@@ -220,7 +210,7 @@ class Player extends Component {
             if (this.spells.length < 3) this.spells.push(Crucio);
             break;            
             case "Imperio":
-            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 10, 10, 
+            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 10, 10, "./Images/blue_spell.png",
             function(el){
                 el.health -= 35;
                 el.update = function(){
