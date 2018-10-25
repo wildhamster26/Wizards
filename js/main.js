@@ -24,5 +24,5 @@ $('a').click(function(event){
   var href = $(this).attr('href')
   goToPage(href)
   if (href === "play")
-        startGame();
+          startGame();
 })
