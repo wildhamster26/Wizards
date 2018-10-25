@@ -6,6 +6,10 @@ var p2 = new Player(ctx, 30, 30, "green", 100, 100, 100, 1, 1, 2, "./Images/vold
 p1.opponent = p2;
 p2.opponent = p1;
 let intervalId;
+let endHarry = new Image();
+endHarry.src = "./Images/voldemort_infinity_war_death_meme.png"
+let endVoldemort = new Image();
+endVoldemort.src = "./Images/voldemort_kills.jpg"
 
 function drawEverything() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -23,8 +27,20 @@ function checkCollision(a,b) {
 function startGame(){
     intervalId = setInterval(function(){
       //END GAME IF SOMEONE LOSES ALL HEALTH
-        if(p1.health <= 0 || p2.health <= 0){
+        if(p1.health <= 0){
           ctx.clearRect(0, 0, canvas.width, canvas.height)
+          ctx.save()
+          ctx.drawImage(endVoldemort, 98, 111);
+          ctx.font="30px harry";
+          ctx.fillStyle="#0A0A0A";          
+          ctx.fillText("Nagini... giʃe...('eat in parseltongue')", 340, 60);
+          ctx.restore()
+          clearInterval(intervalId);
+          return;
+        }
+        else if(p2.health <= 0){
+          ctx.clearRect(0, 0, canvas.width, canvas.height)
+          ctx.drawImage(endHarry, 98, 140);
           clearInterval(intervalId);
           return;
         }
