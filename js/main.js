@@ -1,10 +1,4 @@
-// When we call goToPage('about'), it will only display the 'about' page
 function goToPage(link) {
-  // // Solution 1
-  // $('[data-page]').hide()
-  // $('[data-page='+link+']').show()
-
-  // Solution 2
   $('[data-page]').each(function() {
     var page = $(this).data('page')
     if (page === link)
@@ -22,11 +16,9 @@ function goToPage(link) {
       $(this).removeClass('active')
   })
 }
-// Go to main page
-// goToPage('home')
-goToPage('play')
 
-// Listen for click events on <a> and redirect to the right page
+goToPage('home')
+
 $('a').click(function(event){
   event.preventDefault()
   var href = $(this).attr('href')

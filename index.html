@@ -12,51 +12,113 @@
   <!-- Own CSS -->
   <link rel="stylesheet" href="style.css">
 
-  <title>jGame</title>
+  <title>Harry Vs Voldy</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-success">
+  <nav class="navbar navbar-expand-sm navbar-dark">
     <a class="navbar-brand" href="home">
-      <i class="fas fa-gamepad"></i> jGame
+      <i class="fas fa-bolt"></i> Harry Vs. Voldy
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav m-auto">
         <li class="nav-item">
           <a class="nav-link" href="play">Play</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="high-scores">High Scores</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="about">About</a>
         </li>
-      </ul>
+      </ul> -->
     </div>
   </nav>
 
   <div class="container mt-3">
-    <div data-page="home">
-      <h1>Home</h1>
-      <a href="play" class="btn btn-lg btn-block btn-success">Play</a>
+    <div data-page="home" id = "home">
+      <div id = "story">
+        <img src="Images\HarryVsVoldemort.jpg" alt="Harry Vs. Voldemort image" id="main-image"><hr>
+        <h2>Harry and Voldy are BFFs. <br><br>
+          They are both gifted wizards whose only wish is to win the UK's greatest tournament of all - <em>Britain's got talent</em>. <br><br>
+    
+          One sunny afternoon they stroll together to the forbidden forest, where they can practice their show and try to beat each other while entertaining Simon "The Sorcerer" Cowel.<br><br>
+          Choose your player and let's get it on!<br><br>
+        </h2>
+      </div>
+      <div id = "instructions">
+          <div class = "player-intro">
+              <p>
+                  Voldy has 100 health and slow but powerful spells.<br>
+                  He moves with these keys:
+                  <div class ="move-instructions">
+                      <ul>
+                        <li>W</li>
+                        <li>E</li>
+                        <li>R</li>
+                      </ul>
+                      <ul>
+                          <li>S</li>
+                          <li><i class="fas fa-arrows-alt"></i></li>
+                          <li>F</li>
+                      </ul>
+                      <ul>
+                          <li>X</li>
+                          <li>C</li>
+                          <li>V</li>
+                      </ul>
+                    </div>
+                  - Use the "1" key to cast "Avada-Kedavra" - a dark spell that causes 100 damage.<br><br>
+                  - Use the "2" key to cast "Crucio" - a dark spell that causes 50 damage and paralyzes Harry for 2 seconds.<br><br>
+                  - Use the "3" key to cast "Imperio" - a dark spell that causes 35 damage and moves helpless Harry towards the center of the screen for 3 seconds.
+              </p>
+            </div>
+        <div class = "player-intro">
+          <p>
+            Harry has 100 health and faster but less powerful spells.<br>
+            He moves with the keypad:
+            <div class ="move-instructions">
+              <ul>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+              </ul>
+              <ul>
+                  <li>4</li>
+                  <li><i class="fas fa-arrows-alt"></i></li>
+                  <li>6</li>
+              </ul>
+              <ul>
+                  <li>1</li>
+                  <li>2</li>
+                  <li>3</li>
+              </ul>
+            </div>
+            - Use the "\" key to cast "Expelliarmus" - a spell that causes 35 damage and prevents Voldy from casting any spells for 4 seconds. That's a lot of time.<br><br>
+            - Use the "]" key to cast "Stupefy" - a spell that causes 35 damage and paralyzes Voldy for 2 seconds.<br><br>
+            - Use the "[" key to cast "Sectum-Sempra" - a dark spell that causes 50 damage.<br>
+          </p>
+        </div>
+      </div>
+      <!-- <a href="play" class="btn btn-lg btn-block btn-success">Play</a>
       <a href="high-scores" class="btn btn-lg btn-block btn-success">High Scores</a>
-      <a href="about" class="btn btn-lg btn-block btn-success">About</a>
+      <a href="about" class="btn btn-lg btn-block btn-success">About</a> -->
     </div>
     <div data-page="play">
-      <h1>Wizards</h1>
+      <h1>Harry Vs. Voldy</h1>
       <canvas width="1200" height="800"></canvas>
     </div>
 
-    <div data-page="high-scores">
+    <!-- <div data-page="high-scores">
       <h1>High scores</h1>
     </div>
 
     <div data-page="about">
       <h1>About</h1>
-    </div>
+    </div> -->
   </div>
 
   <!-- Optional JavaScript -->

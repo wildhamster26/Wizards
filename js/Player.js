@@ -254,7 +254,7 @@ class Player extends Component {
                             this.spells[i].update(this.opponent);
                         }
                     }
-            },2000)});
+            },3000)});
             if (this.spells.length < 3) this.spells.push(Imperio);
             break;            
         }
