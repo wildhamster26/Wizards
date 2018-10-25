@@ -15,8 +15,21 @@ class Player extends Component {
         this.image = new Image();
         this.image.src = imageSrc;
         this.frameIndex = 0;
+        this.frameIndexY = 0;
         this.tickCount = 0;
         this.ticksPerFrame = 5;
+    }
+
+    tickFrame() {
+        this.tickCount++;
+            if(this.tickCount > this.ticksPerFrame){
+                this.tickCount = 0;
+                if(this.frameIndex < 2)
+                    this.frameIndex++;
+                else
+                    this.frameIndex = 0;
+            }
+
     }
     
     update() {
@@ -24,39 +37,47 @@ class Player extends Component {
         switch (this.direction) {
             case "N":
                 this.y -= this.speed;
-                this.tickCount++;
+                this.frameIndexY = 96;
+                this.tickFrame();
                 break;
             case "NE":
                 this.y -= this.speed;
                 this.x += this.speed;
-                this.tickCount++;
+                this.frameIndexY = 64;
+                this.tickFrame();
                 break;
             case "E":
                 this.x += this.speed;
-                this.tickCount++;
+                this.frameIndexY = 64;
+                this.tickFrame();
                 break;
             case "SE":
                 this.y += this.speed;
                 this.x += this.speed;
-                this.tickCount++;
+                this.frameIndexY = 64;
+                this.tickFrame();
                 break;
             case "S":
                 this.y += this.speed;
-                this.tickCount++;
+                this.frameIndexY = 0;
+                this.tickFrame();
                 break;
             case "SW":
                 this.y += this.speed;
                 this.x -= this.speed;
-                this.tickCount++;
+                this.frameIndexY = 32;
+                this.tickFrame();
                 break;
             case "W":
                 this.x -= this.speed;
-                this.tickCount++;
+                this.frameIndexY = 32;
+                this.tickFrame();
                 break;
             case "NW":
                 this.y -= this.speed;
                 this.x -= this.speed;
-                this.tickCount++;
+                this.frameIndexY = 32;
+                this.tickFrame();
                 break;
         }
         this.x = Math.max(0, this.x);
@@ -72,7 +93,7 @@ class Player extends Component {
     }
 
     draw() {
-        this.ctx.drawImage(this.image, 0, 0, 32, 32, this.x, this.y, 32, 32);
+        this.ctx.drawImage(this.image, this.frameIndex*32, this.frameIndexY, 32, 32, this.x, this.y, 32, 32);
         for (let i = 0; i < this.spells.length; i++) {
             this.spells[i].draw();
         }
