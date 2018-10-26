@@ -124,92 +124,15 @@ document.onkeydown = function(event) {
     p1.down = true;
   else if(event.which === 37)
     p1.left = true;
-  switch (event.which) {
-  //   //PLAYER 1
-  //   case 104: // key 8 - N
-  //     p1.direction = "N";
-  //     p1.vy = -1;
-  //     p1.vx = 0;
-  //     break;
-  //   case 105: // key 9 - NW
-  //     p1.direction = "NE";
-  //     p1.vy = -1;
-  //     p1.vx = 1;
-  //     break;
-  //   case 102: // key 6 - E
-  //     p1.direction = "E";
-  //     p1.vx = 1;
-  //     p1.vy = 0;
-  //     break;
-  //   case 99: // key 3 - SE
-  //     p1.direction = "SE";
-  //     p1.vx = 1;
-  //     p1.vy = 1;
-  //     break;
-  //   case 98: // key 2 - S
-  //     p1.direction = "S";
-  //     p1.vy = 1;
-  //     p1.vx = 0;
-  //     break;
-  //   case 97: //key 1 - SW
-  //     p1.direction = "SW";
-  //     p1.vy = 1;
-  //     p1.vx = -1;
-  //     break;
-  //   case 100: //left arrow
-  //     p1.direction = "W";
-  //     p1.vx = -1;
-  //     p1.vy = 0;
-  //     break;
-  //   case 103: // key 7 - NW
-  //     p1.direction = "NW";
-  //     p1.vx = -1;
-  //     p1.vy = -1;
-  //     break;
-
-    //PLAYER 2
-    case 69: // key e - N
-      p2.direction = "N";
-      p2.vy = -1;
-      p2.vx = 0;
-      break;
-    case 82: // key r - NE
-      p2.direction = "NE";
-      p2.vy = -1;
-      p2.vx = 1;
-      break;
-    case 70: // key f - E
-      p2.direction = "E";
-      p2.vy = 0;
-      p2.vx = 1;
-      break;
-    case 86: // key v - SE
-      p2.direction = "SE";
-      p2.vy = 1;
-      p2.vx = 1;
-      break;
-    case 67: // key c - S
-      p2.direction = "S";
-      p2.vy = 1;
-      p2.vx = 0;
-      break;
-    case 88: // key x - SW
-      p2.direction = "SW";
-      p2.vy = 1;
-      p2.vx = -1;
-      break;
-    case 83: // key s - W
-      p2.direction = "W";
-      p2.vy = 0;
-      p2.vx = -1;
-      break;
-    case 87: // key w - NW
-      p2.direction = "NW";
-      p2.vy = -1;
-      p2.vx = -1;
-      break;
-  }
-};
+  else if(event.which === 69)
+    p2.up = true;
+  else if(event.which === 70)
+    p2.right = true;
+  else if(event.which === 68)
+    p2.down = true;
+  else if(event.which === 83)
+    p2.left = true;
+}
 
 document.onkeyup = function (event) {
     event.preventDefault()
@@ -221,32 +144,16 @@ document.onkeyup = function (event) {
       p1.down = false;
     else if(event.which === 37)
       p1.left = false;
+    else if(event.which === 69)
+      p2.up = false;
+    else if(event.which === 70)
+      p2.right = false;
+    else if(event.which === 68)
+      p2.down = false;
+    else if(event.which === 83)
+      p2.left = false;
+      
     switch (event.which) {
-        //PLAYER 1 MOVEMENT
-      // case 104:
-      //   p1.direction = null;
-      //   break
-      // case 105:
-      //   p1.direction =  null;
-      //   break
-      // case 102:
-      //   p1.direction = null;
-      //   break
-      // case 99:
-      //   p1.direction =  null;
-      //   break
-      // case 98:
-      //   p1.direction = null;
-      //   break
-      // case 97:
-      //   p1.direction =  null;
-      //   break
-      // case 100:
-      //   p1.direction = null;
-      //   break
-      // case 103:
-      //   p1.direction =  null;
-      //   break
         //PLAYER 1 SPELLS
       case 220:
         p1.cast("Expelliarmus");
@@ -257,42 +164,15 @@ document.onkeyup = function (event) {
       case 219:
         p1.cast("Sectum-Sempra");
         break;
-
-
-        //PLAYER 2 MOVEMENT
-      case 69:
-        p2.direction =null;
-        break
-      case 82:
-        p2.direction = null;
-        break
-      case 70:
-        p2.direction =null;
-        break
-      case 86:
-        p2.direction = null;
-        break
-      case 67:
-        p2.direction =null;
-        break
-      case 88:
-        p2.direction = null;
-        break
-      case 83:
-        p2.direction =null;
-        break
-      case 87:
-        p2.direction = null;
-        break
          //PLAYER 2 SPELLS
       case 49:
-      p2.cast("Avada-kedavra");
-      break;
-    case 50:
-      p2.cast("Crucio");
-      break;
-    case 51:
-      p2.cast("Imperio");
-      break;
+        p2.cast("Avada-kedavra");
+        break;
+      case 50:
+        p2.cast("Crucio");
+        break;
+      case 51:
+        p2.cast("Imperio");
+        break;
     }
 }
