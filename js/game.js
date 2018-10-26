@@ -47,7 +47,6 @@ function startGame(){
       //MAKE THE ANIMATIONS
         p1.update();
         p2.update();
-        if (checkCollision(p1, p2)){
           if (checkCollision(p1, p2)) {
             switch (p1.direction) {
               case "N":
@@ -110,7 +109,6 @@ function startGame(){
                 break;
             }
           }
-        };
         drawEverything()
     }, 1000/50)
 }
@@ -118,48 +116,56 @@ function startGame(){
 
 document.onkeydown = function(event) {
   event.preventDefault();
+  if(event.which === 38)
+    p1.up = true;
+  else if(event.which === 39)
+    p1.right = true;
+  else if(event.which === 40)
+    p1.down = true;
+  else if(event.which === 37)
+    p1.left = true;
   switch (event.which) {
-    //PLAYER 1
-    case 104: // key 8 - N
-      p1.direction = "N";
-      p1.vy = -1;
-      p1.vx = 0;
-      break;
-    case 105: // key 9 - NW
-      p1.direction = "NE";
-      p1.vy = -1;
-      p1.vx = 1;
-      break;
-    case 102: // key 6 - E
-      p1.direction = "E";
-      p1.vx = 1;
-      p1.vy = 0;
-      break;
-    case 99: // key 3 - SE
-      p1.direction = "SE";
-      p1.vx = 1;
-      p1.vy = 1;
-      break;
-    case 98: // key 2 - S
-      p1.direction = "S";
-      p1.vy = 1;
-      p1.vx = 0;
-      break;
-    case 97: //key 1 - SW
-      p1.direction = "SW";
-      p1.vy = 1;
-      p1.vx = -1;
-      break;
-    case 100: //left arrow
-      p1.direction = "W";
-      p1.vx = -1;
-      p1.vy = 0;
-      break;
-    case 103: // key 7 - NW
-      p1.direction = "NW";
-      p1.vx = -1;
-      p1.vy = -1;
-      break;
+  //   //PLAYER 1
+  //   case 104: // key 8 - N
+  //     p1.direction = "N";
+  //     p1.vy = -1;
+  //     p1.vx = 0;
+  //     break;
+  //   case 105: // key 9 - NW
+  //     p1.direction = "NE";
+  //     p1.vy = -1;
+  //     p1.vx = 1;
+  //     break;
+  //   case 102: // key 6 - E
+  //     p1.direction = "E";
+  //     p1.vx = 1;
+  //     p1.vy = 0;
+  //     break;
+  //   case 99: // key 3 - SE
+  //     p1.direction = "SE";
+  //     p1.vx = 1;
+  //     p1.vy = 1;
+  //     break;
+  //   case 98: // key 2 - S
+  //     p1.direction = "S";
+  //     p1.vy = 1;
+  //     p1.vx = 0;
+  //     break;
+  //   case 97: //key 1 - SW
+  //     p1.direction = "SW";
+  //     p1.vy = 1;
+  //     p1.vx = -1;
+  //     break;
+  //   case 100: //left arrow
+  //     p1.direction = "W";
+  //     p1.vx = -1;
+  //     p1.vy = 0;
+  //     break;
+  //   case 103: // key 7 - NW
+  //     p1.direction = "NW";
+  //     p1.vx = -1;
+  //     p1.vy = -1;
+  //     break;
 
     //PLAYER 2
     case 69: // key e - N
@@ -207,32 +213,40 @@ document.onkeydown = function(event) {
 
 document.onkeyup = function (event) {
     event.preventDefault()
+    if(event.which === 38)
+      p1.up = false;
+    else if(event.which === 39)
+      p1.right = false;
+    else if(event.which === 40)
+      p1.down = false;
+    else if(event.which === 37)
+      p1.left = false;
     switch (event.which) {
         //PLAYER 1 MOVEMENT
-      case 104:
-        p1.direction = null;
-        break
-      case 105:
-        p1.direction =  null;
-        break
-      case 102:
-        p1.direction = null;
-        break
-      case 99:
-        p1.direction =  null;
-        break
-      case 98:
-        p1.direction = null;
-        break
-      case 97:
-        p1.direction =  null;
-        break
-      case 100:
-        p1.direction = null;
-        break
-      case 103:
-        p1.direction =  null;
-        break
+      // case 104:
+      //   p1.direction = null;
+      //   break
+      // case 105:
+      //   p1.direction =  null;
+      //   break
+      // case 102:
+      //   p1.direction = null;
+      //   break
+      // case 99:
+      //   p1.direction =  null;
+      //   break
+      // case 98:
+      //   p1.direction = null;
+      //   break
+      // case 97:
+      //   p1.direction =  null;
+      //   break
+      // case 100:
+      //   p1.direction = null;
+      //   break
+      // case 103:
+      //   p1.direction =  null;
+      //   break
         //PLAYER 1 SPELLS
       case 220:
         p1.cast("Expelliarmus");

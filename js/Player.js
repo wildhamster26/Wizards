@@ -20,6 +20,10 @@ class Player extends Component {
         this.paralyze = false;
         this.imperio = false;
         this.expelliarmus = false;
+        this.up = false;
+        this.down = false;
+        this.left = false;
+        this.right = false;
     }
 
     
@@ -30,52 +34,89 @@ class Player extends Component {
             (this.x < this.ctx.canvas.width/2)? this.x++ : this.x--;
             (this.y < this.ctx.canvas.height/2)? this.y++ : this.y--;
         }
-        switch (this.direction) {
-            case "N":
-                this.y -= this.speed;
-                this.frameIndexY = 96;
-                super.tickFrame();
-                break;
-            case "NE":
-                this.y -= this.speed;
-                this.x += this.speed;
-                this.frameIndexY = 64;
-                super.tickFrame();
-                break;
-            case "E":
-                this.x += this.speed;
-                this.frameIndexY = 64;
-                super.tickFrame();
-                break;
-            case "SE":
-                this.y += this.speed;
-                this.x += this.speed;
-                this.frameIndexY = 64;
-                super.tickFrame();
-                break;
-            case "S":
-                this.y += this.speed;
-                this.frameIndexY = 0;
-                super.tickFrame();
-                break;
-            case "SW":
-                this.y += this.speed;
-                this.x -= this.speed;
-                this.frameIndexY = 32;
-                super.tickFrame();
-                break;
-            case "W":
-                this.x -= this.speed;
-                this.frameIndexY = 32;
-                super.tickFrame();
-                break;
-            case "NW":
-                this.y -= this.speed;
-                this.x -= this.speed;
-                this.frameIndexY = 32;
-                super.tickFrame();
-                break;
+        if (this.up && this.right){
+            this.y -= this.speed;
+            this.x += this.speed;
+            this.frameIndexY = 64;
+            super.tickFrame();
+        } else if (this.down && this.right){
+            this.y += this.speed;
+            this.x += this.speed;
+            this.frameIndexY = 64;
+            super.tickFrame();
+        } else if(this.up && this.left){
+            this.x -= this.speed;
+            this.y -= this.speed;
+            this.frameIndexY = 32;
+            super.tickFrame();
+        } else if(this.down && this.left) {
+            this.y += this.speed;
+            this.x -= this.speed;
+            this.frameIndexY = 32;
+            super.tickFrame();
+        }else if (this.up){
+            this.y -= this.speed;
+            this.frameIndexY = 96;
+            super.tickFrame();
+        } else if (this.down){
+            this.y += this.speed;
+            this.frameIndexY = 0;
+            super.tickFrame();
+        } else if(this.left){
+            this.x -= this.speed;
+            this.frameIndexY = 32;
+            super.tickFrame();
+        } else if(this.right) {
+            this.x += this.speed;
+            this.frameIndexY = 64;
+            super.tickFrame();
         }
+        // switch (this.direction) {
+        //     case "N":
+        //         this.y -= this.speed;
+        //         this.frameIndexY = 96;
+        //         super.tickFrame();
+        //         break;
+        //     case "NE":
+        //         this.y -= this.speed;
+        //         this.x += this.speed;
+        //         this.frameIndexY = 64;
+        //         super.tickFrame();
+        //         break;
+        //     case "E":
+        //         this.x += this.speed;
+        //         this.frameIndexY = 64;
+        //         super.tickFrame();
+        //         break;
+        //     case "SE":
+        //         this.y += this.speed;
+        //         this.x += this.speed;
+        //         this.frameIndexY = 64;
+        //         super.tickFrame();
+        //         break;
+        //     case "S":
+        //         this.y += this.speed;
+        //         this.frameIndexY = 0;
+        //         super.tickFrame();
+        //         break;
+        //     case "SW":
+        //         this.y += this.speed;
+        //         this.x -= this.speed;
+        //         this.frameIndexY = 32;
+        //         super.tickFrame();
+        //         break;
+        //     case "W":
+        //         this.x -= this.speed;
+        //         this.frameIndexY = 32;
+        //         super.tickFrame();
+        //         break;
+        //     case "NW":
+        //         this.y -= this.speed;
+        //         this.x -= this.speed;
+        //         this.frameIndexY = 32;
+        //         super.tickFrame();
+        //         break;
+        // }
         this.x = Math.max(0, this.x);
         this.x = Math.min(this.ctx.canvas.width-this.width, this.x);
         this.y = Math.max(0, this.y);
