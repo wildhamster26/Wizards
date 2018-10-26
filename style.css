@@ -75,6 +75,17 @@ li {
   list-style: none;
 }
 
+#play{
+  display: flex;
+  justify-content: space-around;
+}
+
+#play-credits{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 #h1-play {
   text-align: center;
 }
