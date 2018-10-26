@@ -130,7 +130,7 @@ class Player extends Component {
             if (this.spells.length < 3) this.spells.push(Expelliarmus);
             break;         
             case "Stupefy":
-            let Stupefy = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 10, 32, 32, "./Images/orb_spell.png",
+            let Stupefy = new Spell(spellName, this.x, this.y, "yellow", this.direction, this.vx, this.vy, 10, 32, 32, "./Images/orb_spell_gold.png",
             function(el){
                 el.health -= 35;
                 el.paralyze = true;
@@ -148,7 +148,7 @@ class Player extends Component {
             if (this.spells.length < 3) this.spells.push(SectumSempra);
             break;            
             case "Avada-kedavra":
-            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 3, 32, 32, "./Images/blue_spell.png",
+            let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 3, 32, 32, "./Images/blue_spell_half chartreusse.png",
             function(el){
                 el.health = -1;
             });
