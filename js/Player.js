@@ -37,38 +37,54 @@ class Player extends Component {
         if (this.up && this.right){
             this.y -= this.speed;
             this.x += this.speed;
+            this.vy = -1;
+            this.vx = 1;
             this.frameIndexY = 64;
             super.tickFrame();
         } else if (this.down && this.right){
             this.y += this.speed;
             this.x += this.speed;
+            this.vy = 1;
+            this.vx = 1;
             this.frameIndexY = 64;
             super.tickFrame();
         } else if(this.up && this.left){
             this.x -= this.speed;
             this.y -= this.speed;
             this.frameIndexY = 32;
+            this.vy = -1;
+            this.vx = -1;
             super.tickFrame();
         } else if(this.down && this.left) {
             this.y += this.speed;
             this.x -= this.speed;
+            this.vy = 1;
+            this.vx = -1;
             this.frameIndexY = 32;
             super.tickFrame();
         }else if (this.up){
             this.y -= this.speed;
             this.frameIndexY = 96;
+            this.vy = -1;
+            this.vx = 0;
             super.tickFrame();
         } else if (this.down){
             this.y += this.speed;
             this.frameIndexY = 0;
+            this.vy = 1;
+            this.vx = 0;
             super.tickFrame();
         } else if(this.left){
             this.x -= this.speed;
             this.frameIndexY = 32;
+            this.vx = -1;
+            this.vy = 0;
             super.tickFrame();
         } else if(this.right) {
             this.x += this.speed;
             this.frameIndexY = 64;
+            this.vx = 1;
+            this.vy = 0;
             super.tickFrame();
         }
         // switch (this.direction) {
