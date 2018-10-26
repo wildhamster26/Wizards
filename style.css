@@ -28,7 +28,7 @@ nav{
   text-align: left;
 }
 
-#welcome{
+/* .welcome{
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -42,7 +42,7 @@ nav{
   background-size: 75%;
   background-color: black;
   color: transparent;
-}
+} */
 
 #story {
   padding-top: 20px;
@@ -73,4 +73,12 @@ nav{
 
 li {
   list-style: none;
+}
+
+#h1-play {
+  text-align: center;
+}
+
+canvas {
+  margin-bottom: 20px;
 }
