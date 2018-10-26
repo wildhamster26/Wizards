@@ -1,19 +1,22 @@
 let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
 
-var p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 100, -1, -1, 2, "./Images/harry.png")
-var p2 = new Player(ctx, 32, 32, "green", 100, 100, 100, 1, 1, 2, "./Images/voldemort.png");
+var p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 100, -1, -1, 2, "./Images/harry-transparent.png")
+var p2 = new Player(ctx, 32, 32, "green", 100, 100, 100, 1, 1, 2, "./Images/voldemort-transparent.png");
 p1.opponent = p2;
 p2.opponent = p1;
 let intervalId;
 let endHarry = new Image();
-endHarry.src = "./Images/voldemort_infinity_war_death_meme.png"
+endHarry.src = "./Images/voldemort_infinity_war_death_meme.png";
 let endVoldemort = new Image();
-endVoldemort.src = "./Images/voldemort_kills.jpg"
+endVoldemort.src = "./Images/voldemort_kills.jpg";
+let bgPic = new Image();
+bgPic.src = "./Images/brick_background.jpg";
 
 function drawEverything() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.save()
+  // ctx.drawImage(bgPic, 0, 0, ctx.canvas.width, ctx.canvas.height);
   ctx.fillStyle="#71BE76";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.restore();
