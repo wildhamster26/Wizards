@@ -9,6 +9,8 @@ class Component {
         this.vx = vx
         this.vy = vy
         this.speed = speed;
+        this.centerX = this.x + this.width/2
+        this.centerY = this.y + this.height/2
     }
     draw() {
         this.ctx.save()
@@ -34,7 +36,7 @@ class Component {
         this.y += this.vy*this.speed;
         if (this.x > this.ctx.canvas.width || this.x < 0 || this.y < 0 || this.y > this.ctx.canvas.height) this.width = 0;
         //If spell hits a player, it disappears
-        if(checkCollision(this, opponent)){
+        if(checkCollisionSpell(this, opponent)){
             if (!!this.spellName === true){
                 this.effect(opponent);
                 this.width = 0;

@@ -18,6 +18,8 @@ class Spell extends Component {
         this.frameIndexY = 0;
         this.tickCount = 0;
         this.ticksPerFrame = 5;
+        this.centerX = this.x + this.width/2
+        this.centerY = this.y + this.height/2
     }
     
     setFrameIndexY(){
@@ -29,6 +31,11 @@ class Spell extends Component {
             this.frameIndexY = 0;
         else
             this.frameIndexY = 150;
+    }
+
+    setSpellCenter(){
+        this.centerX = this.x + this.width/2
+        this.centerY = this.y + this.height/2
     }
     
     draw(){
