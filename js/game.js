@@ -53,76 +53,40 @@ function startGame(){
         p1.update();
         p2.update();
           if (checkCollision(p1, p2)) {
-            if(p1.x - p2.x){
-              p1.x += 10
-              p2.x -= 10
-            }
-            else if(p2.x > p1.x){
-              p2.x += 10
-              p1.x -= 10
+            if(p1.x > p2.x && p1.y >p2.y){ 
+              p1.x += 2
+              p1.y += 2
+              p2.y -= 2
+              p2.x -= 2
+            } else if(p2.x > p1.x && p2.y > p1.y){
+              p2.x += 2
+              p2.y += 2
+              p1.y -= 2
+              p1.x -= 2
+            } else if(p2.x > p1.x && p2.y < p1.y){
+                p2.x += 2
+                p2.y -= 2
+                p1.y += 2
+                p1.x -= 2
+            } else if(p2.x < p1.x && p2.y > p1.y){
+                p2.x -= 2
+                p2.y += 2
+                p1.y -= 2
+                p1.x += 2
+            }  else if(p2.x === p1.x && p2.y > p1.y){
+              p2.y += 2
+              p1.y -= 2
+            } else if(p2.x === p1.x && p2.y < p1.y){
+              p2.y -= 2
+              p1.y += 2
+            } else if(p2.x > p1.x && p2.y === p1.y){
+              p2.x += 2
+              p1.x -= 2
+            } else if(p2.x < p1.x && p2.y === p1.y){
+              p2.x -= 2
+              p1.x += 2
             }
           }
-            // switch (p1.direction) {
-            //   case "N":
-            //     p1.y += 5;
-            //     break;
-            //   case "NE":
-            //     p1.y += 5;
-            //     p1.x -= 5;
-            //     break;
-            //   case "E":
-            //     p1.x -= 5;
-            //     break;
-            //   case "SE":
-            //     p1.y -= 5;
-            //     p1.x -= 5;
-            //     break;
-            //   case "S":
-            //     p1.y -= 5;
-            //     break;
-            //   case "SW":
-            //     p1.y -= 5;
-            //     p1.x += 5;
-            //     break;
-            //   case "W":
-            //     p1.x += 5;
-            //     break;
-            //   case "NW":
-            //     p1.y += 5;
-            //     p1.x += 5;
-            //     break;
-            // }
-            // switch (p2.direction) {
-            //   case "N":
-            //     p2.y += 5;
-            //     break;
-            //   case "NE":
-            //     p2.y += 5;
-            //     p2.x -= 5;
-            //     break;
-            //   case "E":
-            //     p2.x -= 5;
-            //     break;
-            //   case "SE":
-            //     p2.y -= 5;
-            //     p2.x -= 5;
-            //     break;
-            //   case "S":
-            //     p2.y -= 5;
-            //     break;
-            //   case "SW":
-            //     p2.y -= 5;
-            //     p2.x += 5;
-            //     break;
-            //   case "W":
-            //     p2.x += 5;
-            //     break;
-            //   case "NW":
-            //     p2.y += 5;
-            //     p2.x += 5;
-            //     break;
-            // }
-          // }
         drawEverything()
     }, 1000/50)
 }
