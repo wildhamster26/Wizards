@@ -11,14 +11,14 @@ endHarry.src = "./Images/voldemort_infinity_war_death_meme.png";
 let endVoldemort = new Image();
 endVoldemort.src = "./Images/voldemort_kills.jpg";
 let bgPic = new Image();
-bgPic.src = "./Images/brick_background.jpg";
+bgPic.src = "./Images/grassBg.jpg";
 
 function drawEverything() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.save()
-  // ctx.drawImage(bgPic, 0, 0, ctx.canvas.width, ctx.canvas.height);
-  ctx.fillStyle="#71BE76";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(bgPic, 0, 0, ctx.canvas.width, ctx.canvas.height);
+  // ctx.fillStyle="#71BE76";
+  // ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.restore();
   p1.draw()
   p2.draw()
