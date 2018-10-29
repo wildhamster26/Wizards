@@ -1,8 +1,6 @@
 class Player extends Component {
     constructor(ctx, width, height, color, x, y, health, vx, vy, speed, imageSrc) {
         super(ctx, width, height, color, x, y);
-        // this.width = width;
-        // this.height = height;
         this.score = 0
         this.speed = speed;
         this.direction = null;
@@ -100,10 +98,6 @@ class Player extends Component {
         for (let i = this.spells.length-1; i >= 0; i--) {
             this.spells[i].update(this.opponent);
             this.spells[i].setSpellCenter();
-            // console.log("centerY:", this.spells[i].centerY);
-            // console.log("centerX:", this.spells[i].centerX);
-            // console.log("x:", this.spells[i].x);
-            // console.log("y:", this.spells[i].y);
             if (this.spells[i].width === 0 ) {
                 this.spells.splice(i,1);
             } 

@@ -28,22 +28,6 @@ nav{
   text-align: left;
 }
 
-/* .welcome{
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  margin-top: 10px;
-  padding-bottom: 30vh;
-  text-align: center;
-  background-image: url("Images/HarryVsVoldemort.jpg");
-  background-repeat: no-repeat;
-  background-size: contain; 
-  background-position: 50%;
-  background-size: 75%;
-  background-color: black;
-  color: transparent;
-} */
-
 #story {
   padding-top: 20px;
   color: black;
