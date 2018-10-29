@@ -1,8 +1,9 @@
+
 let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
 
-var p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 100, -1, -1, 2, "./Images/harry-transparent.png")
-var p2 = new Player(ctx, 32, 32, "green", 100, 100, 100, 1, 1, 2, "./Images/voldemort-transparent.png");
+var p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/harry-transparent.png")
+var p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/voldemort-transparent.png");
 p1.opponent = p2;
 p2.opponent = p1;
 let intervalId;
@@ -13,9 +14,13 @@ endVoldemort.src = "./Images/voldemort_kills.jpg";
 let bgPic = new Image();
 bgPic.src = "./Images/grassBg.jpg";
 let harryDisplay = new Image();
-harryDisplay.src = "./Images/harry-display.png";
+harryDisplay.src = "../Images/harry-display.png";
 let voldemortDisplay = new Image();
-voldemortDisplay.src = "./Images/voldemort-display.png";
+voldemortDisplay.src = "../Images/voldemort-display.png";
+
+let gamebtn = document.querySelector(".play");
+gamebtn.addEventListener("click", startGame);
+
 
 function drawEverything() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -50,9 +55,9 @@ function welcome(){
   ctx.fillText("One sunny afternoon they stroll together to the forbidden forest,", canvas.width/2, 180, canvas.width-100);
   ctx.fillText("where they can practice their show and try to beat each other while entertaining Simon 'The Sorcerer' Cowel.", canvas.width/2, 220, canvas.width-100);
   ctx.fillText("Choose your player and let's get it on!", canvas.width/2, 260, canvas.width-100);
-  ctx.drawImage(harryDisplay, 300, 350);
-  ctx.drawImage(voldemortDisplay, 800, 350);
-  ctx.fillText("Both players have 100 health.", canvas.width/2, 380, canvas.width-100);
+  harryDisplay.onload = function(){ctx.drawImage(harryDisplay, 300, 350)};
+  voldemortDisplay.onload = function(){ctx.drawImage(voldemortDisplay, 800, 350)};
+  ctx.fillText("Both players have 150 health.", canvas.width/2, 380, canvas.width-100);
   ctx.textAlign = "left";
   ctx.fillText("Harry moves with the Arrow keys.", 150, 500, canvas.width-100);
   ctx.fillText("Voldy moves with the ESDF keys.", 670, 500, canvas.width-100);
@@ -74,11 +79,11 @@ function welcome(){
 welcome();
 
 function startGame(){
-  p1.health = 100;
+  p1.health = 150;
   p1.x = ctx.canvas.width - 100;
   p1.y = ctx.canvas.height - 100;
   p1.spells = [];
-  p2.health = 200;
+  p2.health = 150;
   p2.x = 100;
   p2.y = 100;
   p2.spells = [];
