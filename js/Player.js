@@ -26,6 +26,7 @@ class Player extends Component {
         this.right = false;
         this.centerX = this.x + this.width/2
         this.centerY = this.y + this.height/2
+        this.textTime = 0;
     }
 
     
@@ -99,10 +100,10 @@ class Player extends Component {
         for (let i = this.spells.length-1; i >= 0; i--) {
             this.spells[i].update(this.opponent);
             this.spells[i].setSpellCenter();
-            console.log("centerY:", this.spells[i].centerY);
-            console.log("centerX:", this.spells[i].centerX);
-            console.log("x:", this.spells[i].x);
-            console.log("y:", this.spells[i].y);
+            // console.log("centerY:", this.spells[i].centerY);
+            // console.log("centerX:", this.spells[i].centerX);
+            // console.log("x:", this.spells[i].x);
+            // console.log("y:", this.spells[i].y);
             if (this.spells[i].width === 0 ) {
                 this.spells.splice(i,1);
             } 
@@ -119,6 +120,7 @@ class Player extends Component {
     //BEGINNING OF THE CAST SPELL METHOD
     cast(spellName) {
         if(this.expelliarmus) return;
+        if(this.imperio) return;
         switch(spellName){
             case "Expelliarmus":
             let Expelliarmus = new Spell(spellName, this.x, this.y, "red", this.direction, this.vx, this.vy, 10, 32, 32, "./Images/orb_spell.png",

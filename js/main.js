@@ -17,7 +17,7 @@ function goToPage(link) {
   })
 }
 
-goToPage('home')
+goToPage('play')
 
 $('a').click(function(event){
   event.preventDefault()

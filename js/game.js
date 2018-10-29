@@ -11,17 +11,25 @@ endHarry.src = "./Images/voldemort_infinity_war_death_meme.png";
 let endVoldemort = new Image();
 endVoldemort.src = "./Images/voldemort_kills.jpg";
 let bgPic = new Image();
-bgPic.src = "./Images/grass-bg.jpg";
+bgPic.src = "./Images/grassBg.jpg";
+let harryDisplay = new Image();
+harryDisplay.src = "./Images/harry-display.png";
+let voldemortDisplay = new Image();
+voldemortDisplay.src = "./Images/voldemort-display.png";
 
 function drawEverything() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.save()
   ctx.drawImage(bgPic, 0, 0, ctx.canvas.width, ctx.canvas.height);
-  // ctx.fillStyle="#71BE76";
-  // ctx.fillRect(0, 0, canvas.width, canvas.height);
   ctx.restore();
   p1.draw()
   p2.draw()
+  if(p2.textTime > 0){
+    ctx.save()
+    ctx.font = "20px sans-serif";
+    ctx.fillText("Yes... Dark magic!", p2.x -30, p2.y -50);
+    ctx.restore()
+}
 }
 
 function checkCollision(a,b) {
@@ -32,8 +40,48 @@ function checkCollisionSpell(a,b) {
   return Math.abs(a.centerX - b.centerX) <= b.width/2 && Math.abs(a.centerY - b.centerY) <= b.height/2;
 }
 
+function welcome(){
+  ctx.save();
+  ctx.font = "20px sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("Harry and Voldy are BFFs.", canvas.width/2, 100, canvas.width-100);
+  ctx.fillText("They are both gifted wizards whose only wish is to win the UK's greatest tournament of all - Britain's got talent.", canvas.width/2, 140, canvas.width-100);
+  ctx.fillText("One sunny afternoon they stroll together to the forbidden forest,", canvas.width/2, 180, canvas.width-100);
+  ctx.fillText("where they can practice their show and try to beat each other while entertaining Simon 'The Sorcerer' Cowel.", canvas.width/2, 220, canvas.width-100);
+  ctx.fillText("Choose your player and let's get it on!", canvas.width/2, 260, canvas.width-100);
+  ctx.drawImage(harryDisplay, 300, 350);
+  ctx.drawImage(voldemortDisplay, 800, 350);
+  ctx.fillText("Both players have 100 health.", canvas.width/2, 380, canvas.width-100);
+  ctx.textAlign = "left";
+  ctx.fillText("Harry moves with the Arrow keys.", 150, 500, canvas.width-100);
+  ctx.fillText("Voldy moves with the ESDF keys.", 670, 500, canvas.width-100);
+  ctx.fillText("Press '8' for Expelliarmus - 35 damage.", 150, 540, canvas.width-100);
+  ctx.fillText("Opponent can't cast spells for 4 seconds.", 150, 560, canvas.width-100);
+  ctx.fillText("Press '9' for Stupefy - 35 damage.", 150, 600, canvas.width-100);
+  ctx.fillText("Opponent can't move for 2 seconds.", 150, 620, canvas.width-100);
+  ctx.fillText("Press '0' for Sectum-sempra - 50 damage.", 150, 660, canvas.width-100);
+  ctx.fillText("Press '1' for Avada-kedavra - 100 damage.", 670, 540, canvas.width-100);
+  ctx.fillText("Press '2' for Cruciio - 50 damage.", 670, 580, canvas.width-100);
+  ctx.fillText("Opponent can't move for 2 seconds.", 670, 600, canvas.width-100);
+  ctx.fillText("Press '3' for Imperio - 35 damage.", 670, 640, canvas.width-100);
+  ctx.fillText("Opponent moves towards the center for 3 seconds.", 670, 660, canvas.width-100);
+  ctx.textAlign = "center";
+  ctx.fillText("Click on the 'Play' button at the top to begin!", canvas.width/2, 750, canvas.width-100);
+  ctx.restore();
+}
+
+welcome();
+
 function startGame(){
-    intervalId = setInterval(function(){
+  p1.health = 100;
+  p1.x = ctx.canvas.width - 100;
+  p1.y = ctx.canvas.height - 100;
+  p1.spells = [];
+  p2.health = 200;
+  p2.x = 100;
+  p2.y = 100;
+  p2.spells = [];
+  intervalId = setInterval(function(){
       //END GAME IF SOMEONE LOSES ALL HEALTH
         if(p1.health <= 0){
           ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -90,70 +138,75 @@ function startGame(){
               p1.x += 2
             }
           }
+          document.onkeydown = function(event) {
+            event.preventDefault();
+            if(event.which === 38)
+              p1.up = true;
+            else if(event.which === 39)
+              p1.right = true;
+            else if(event.which === 40)
+              p1.down = true;
+            else if(event.which === 37)
+              p1.left = true;
+            else if(event.which === 69)
+              p2.up = true;
+            else if(event.which === 70)
+              p2.right = true;
+            else if(event.which === 68)
+              p2.down = true;
+            else if(event.which === 83)
+              p2.left = true;
+          }
+          
+          document.onkeyup = function (event) {
+              event.preventDefault()
+              if(event.which === 38)
+                p1.up = false;
+              else if(event.which === 39)
+                p1.right = false;
+              else if(event.which === 40)
+                p1.down = false;
+              else if(event.which === 37)
+                p1.left = false;
+              else if(event.which === 69)
+                p2.up = false;
+              else if(event.which === 70)
+                p2.right = false;
+              else if(event.which === 68)
+                p2.down = false;
+              else if(event.which === 83)
+                p2.left = false;
+                
+              switch (event.which) {
+                  //PLAYER 1 SPELLS
+                case 56:
+                  p1.cast("Expelliarmus");
+                  break;
+                case 57:
+                  p1.cast("Stupefy");
+                  break;
+                case 48:
+                  p1.cast("Sectum-Sempra");
+                  p2.textTime = 100;
+                  setTimeout(function(){
+                    p2.textTime = 0;
+                  }, 2000)
+                  break;
+                   //PLAYER 2 SPELLS
+                case 49:
+                  p2.cast("Avada-kedavra");
+                  break;
+                case 50:
+                  p2.cast("Crucio");
+                  break;
+                case 51:
+                  p2.cast("Imperio");
+                  break;
+              }
+          }
         drawEverything()
     }, 1000/50)
 }
 
 
-document.onkeydown = function(event) {
-  event.preventDefault();
-  if(event.which === 38)
-    p1.up = true;
-  else if(event.which === 39)
-    p1.right = true;
-  else if(event.which === 40)
-    p1.down = true;
-  else if(event.which === 37)
-    p1.left = true;
-  else if(event.which === 69)
-    p2.up = true;
-  else if(event.which === 70)
-    p2.right = true;
-  else if(event.which === 68)
-    p2.down = true;
-  else if(event.which === 83)
-    p2.left = true;
-}
 
-document.onkeyup = function (event) {
-    event.preventDefault()
-    if(event.which === 38)
-      p1.up = false;
-    else if(event.which === 39)
-      p1.right = false;
-    else if(event.which === 40)
-      p1.down = false;
-    else if(event.which === 37)
-      p1.left = false;
-    else if(event.which === 69)
-      p2.up = false;
-    else if(event.which === 70)
-      p2.right = false;
-    else if(event.which === 68)
-      p2.down = false;
-    else if(event.which === 83)
-      p2.left = false;
-      
-    switch (event.which) {
-        //PLAYER 1 SPELLS
-      case 220:
-        p1.cast("Expelliarmus");
-        break;
-      case 221:
-        p1.cast("Stupefy");
-        break;
-      case 219:
-        p1.cast("Sectum-Sempra");
-        break;
-         //PLAYER 2 SPELLS
-      case 49:
-        p2.cast("Avada-kedavra");
-        break;
-      case 50:
-        p2.cast("Crucio");
-        break;
-      case 51:
-        p2.cast("Imperio");
-        break;
-    }
-}

@@ -25,12 +25,15 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav m-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="home"><i class="fas fa-bolt"></i> Harry Vs. Voldy</a>
-        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="home"> Harry Vs. Voldy</a>
+        </li> -->
         <li class="nav-item">
           <a class="nav-link" href="play">Play</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="credits">Credits</a>
+          </li>
         <!-- <li class="nav-item">
           <a class="nav-link" href="high-scores">High Scores</a>
         </li>
@@ -42,8 +45,8 @@
   </nav>
 
   <div>
-    <div data-page="home" id = "home">
-      <!-- <div class="welcome">
+    <!-- <div data-page="home" id = "home">
+       <div class="welcome">
         <img src="Images\HarryVsVoldemort.jpg" alt="Harry Vs. Voldemort image" id="main-image"><hr>
         <h2>Harry and Voldy are BFFs. <br><br>
           They are both gifted wizards whose only wish is to win the UK's greatest tournament of all - <em>Britain's got talent</em>. <br><br>
@@ -51,10 +54,10 @@
           One sunny afternoon they stroll together to the forbidden forest, where they can practice their show and try to beat each other while entertaining Simon "The Sorcerer" Cowel.<br><br>
           Choose your player and let's get it on!<br><br>
         </h2>
-      </div> -->
+      </div> 
       <div class="container mt-3">
           <div id="story">
-              <!-- <img src="Images\HarryVsVoldemort.jpg" alt="Harry Vs. Voldemort image" id="main-image"><hr> -->
+              <img src="Images\HarryVsVoldemort.jpg" alt="Harry Vs. Voldemort image" id="main-image"><hr> 
               <h2>Harry and Voldy are BFFs. <br><br>
                 They are both gifted wizards whose only wish is to win the UK's greatest tournament of all - <em>Britain's got talent</em>. <br><br>
           
@@ -64,49 +67,51 @@
           </div>
         <div id = "instructions">
           <div class = "player-intro">
+              <img src="./Images/voldemort-display.png" class="character-display" alt="Voldemort's character">
               <p>
                   Voldy has 100 health and slow but powerful spells.<br><br>
-                  He moves with E,S,D and F.<br><br>
-                  - Use the "1" key to cast "Avada-Kedavra" - a dark spell that causes 100 damage.<br><br>
-                  - Use the "2" key to cast "Crucio" - a dark spell that causes 50 damage and paralyzes Harry for 2 seconds.<br><br>
-                  - Use the "3" key to cast "Imperio" - a dark spell that causes 35 damage and moves helpless Harry towards the center of the screen for 3 seconds.
+                  <div class = "controls"><img src="./Images/arrow-keys.png" width="100" height="71" class="arrow-keys" alt="arrow keys">He moves with E,S,D and F.</div><br><br>
+                  Press "1" to cast "Avada-Kedavra" - a dark spell that causes 100 damage.<br><br>
+                  Press "2" to cast "Crucio" - a dark spell that causes 50 damage and paralyzes Harry for 2 seconds.<br><br>
+                  Press "3" to cast "Imperio" - a dark spell that causes 35 damage and moves helpless Harry towards the center of the screen for 3 seconds.
               </p>
             </div>
           <div class = "player-intro">
-            
+            <img src="./Images/harry-display.png" class="character-display" alt="Harry's character">
             <p>
               Harry has 100 health and faster but less powerful spells.<br><br>
-              He moves with the arrow keys.<br><br>
-              - Use the "\" key to cast "Expelliarmus" - a spell that causes 35 damage and prevents Voldy from casting any spells for 4 seconds. That's a lot of time.<br><br>
-              - Use the "]" key to cast "Stupefy" - a spell that causes 35 damage and paralyzes Voldy for 2 seconds.<br><br>
-              - Use the "[" key to cast "Sectum-Sempra" - a dark spell that causes 50 damage.<br>
+              <div class = "controls"><img src="./Images/arrow-keys.png" width="100" height="71" class="arrow-keys" alt="arrow keys">He moves with the arrow keys.</div><br><br>
+              Press "\" to cast "Expelliarmus" - a spell that causes 35 damage and prevents Voldy from casting any spells for 4 seconds. That's a lot of time.<br><br>
+              Press "]" to cast "Stupefy" - a spell that causes 35 damage and paralyzes Voldy for 2 seconds.<br><br>
+              Press "[" to cast "Sectum-Sempra" - a dark spell that causes 50 damage.<br>
             </p>
           </div>
         </div>
       </div>
-      <!-- <a href="play" class="btn btn-lg btn-block btn-success">Play</a>
+       <a href="play" class="btn btn-lg btn-block btn-success">Play</a>
       <a href="high-scores" class="btn btn-lg btn-block btn-success">High Scores</a>
-      <a href="about" class="btn btn-lg btn-block btn-success">About</a> -->
-    </div>
+      <a href="about" class="btn btn-lg btn-block btn-success">About</a>
+    </div> -->
     <div data-page="play" id="play">
-      <div id="play-credits">
-        <h3>Graphics credits:</h3>
-        <p>Character sprites designed by <a href="https://www.deviantart.com/sindorman" target="_blank">Sindorman</a></p>
-        <p>Spell sprites designed by <a href="https://www.deviantart.com/ravenoxia" target="_blank">Ravenoxia</a></p>
-        <p>Thank you so much for your awesome art!</p>
-      </div>
+      
       <div>
-        <h1 id="h1-play">Harry Vs. Voldy</h1>
+        <h1 id="h1-play"><i class="fas fa-bolt"></i>Harry Vs. Voldy</h1>
         <canvas width="1200" height="800"></canvas>
       </div>
     </div>
 
     <!-- <div data-page="high-scores">
       <h1>High scores</h1>
-    </div>
-    <div data-page="about">
-      <h1>About</h1>
     </div> -->
+    <div data-page="credits">
+      <div id="play-credits">
+          <h3>Credits:</h3>
+          <p>Character sprites designed by <a href="https://www.deviantart.com/sindorman" target="_blank">Sindorman</a></p>
+          <p>Spell sprites designed by <a href="https://www.deviantart.com/ravenoxia" target="_blank">Ravenoxia</a></p>
+          <p>arrow keys (on homepage) by <a href="https://thenounproject.com/term/arrow-keys/264898/" target="_blank">Chameleon Design</a> from the Noun Project</p>
+          <p>Thank you so much for your awesome art!</p>
+        </div>
+    </div>
   </div>
 
   <!-- Optional JavaScript -->
