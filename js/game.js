@@ -27,6 +27,7 @@ function drawEverything() {
   if(p2.textTime > 0){
     ctx.save()
     ctx.font = "20px sans-serif";
+    ctx.fillStyle = "chartreuse";
     ctx.fillText("Yes... Dark magic!", p2.x -30, p2.y -50);
     ctx.restore()
 }
@@ -187,10 +188,10 @@ function startGame(){
                   break;
                 case 48:
                   p1.cast("Sectum-Sempra");
-                  p2.textTime = 100;
+                  p2.textTime = 2000;
                   setTimeout(function(){
                     p2.textTime = 0;
-                  }, 2000)
+                  }, p2.textTime)
                   break;
                    //PLAYER 2 SPELLS
                 case 49:
