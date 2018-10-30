@@ -137,7 +137,7 @@ class Player extends Component {
             if (this.spells.length < 3) this.spells.push(Stupefy);
             break;            
             case "Sectum-Sempra":
-            let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 8, 32, 32, "./Images/orb_spell.png",
+            let SectumSempra = new Spell(spellName, this.x, this.y, "purple", this.direction, this.vx, this.vy, 8, 32, 32, "./Images/orb_spell_purple.png",
             function(el){
                 el.health -= 50;
             });
@@ -146,7 +146,7 @@ class Player extends Component {
             case "Avada-kedavra":
             let AvadaKedavra = new Spell(spellName, this.x, this.y, "chartreuse", this.direction, this.vx, this.vy, 3, 32, 32, "./Images/blue_spell_half chartreusse.png",
             function(el){
-                el.health = -1;
+                el.health = -150;
             });
             if (this.spells.length < 3) this.spells.push(AvadaKedavra);
             break;            
@@ -162,7 +162,7 @@ class Player extends Component {
             if (this.spells.length < 3) this.spells.push(Crucio);
             break;            
             case "Imperio":
-            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 32, 32, "./Images/blue_spell.png",
+            let Imperio = new Spell(spellName, this.x, this.y, "green", this.direction, this.vx, this.vy, 5, 32, 32, "./Images/blue_spell_green.png",
             function(el){
                 el.health -= 35;
                 el.imperio = true;
