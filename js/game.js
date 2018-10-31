@@ -31,22 +31,22 @@ gamebtn.addEventListener("click", startGame);
 canvas.addEventListener("mousedown", function(event){
   if (event.offsetY >= 350 && event.offsetY <= 410){
     if (event.offsetX >= 200 && event.offsetX <= 260){
-      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/ron.png", "ron")
+      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/ron.png", "Ron")
     }
     else if (event.offsetX >= 300 && event.offsetX <= 360){
-      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/harry-transparent.png", "harry")
+      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/harry-transparent.png", "Harry")
     }
     else if (event.offsetX >= 400 && event.offsetX <= 460){
-      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/hermione.png", "hermione")
+      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/hermione.png", "Hermione")
     }
     else if (event.offsetX >= 750 && event.offsetX <= 810){
-      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/lucius.png", "lucius");
+      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/lucius.png", "Lucius");
     }
     else if (event.offsetX >= 850 && event.offsetX <= 910){
-      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/voldemort-transparent.png", "voldemort");
+      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/voldemort-transparent.png", "Voldemort");
     }
     else if (event.offsetX >= 950 && event.offsetX <= 1010){
-      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/umbridge.png", "umbridge");
+      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/umbridge.png", "Umbridge");
     } 
   }
 });
@@ -76,10 +76,25 @@ function checkCollisionSpell(a,b) {
 }
 
 function player1Text(p1){
+  ctx.fillText(p1.characterName + " moves with the arrow keys.", 150, 500, canvas.width-100);
+  ctx.fillText("Press '8' for Expelliarmus - 35 damage.", 150, 540, canvas.width-100);
+  ctx.fillText("Opponent can't cast spells for 4 seconds.", 150, 560, canvas.width-100);
+  ctx.fillText("Press '9' for Stupefy - 35 damage.", 150, 600, canvas.width-100);
+  ctx.fillText("Opponent can't move for 2 seconds.", 150, 620, canvas.width-100);
+  ctx.fillText("Press '0' for Sectum-sempra - 50 damage.", 150, 660, canvas.width-100);
+}
 
+function player2Text(p2){
+  ctx.fillText(p2.characterName + " moves with the ESDF keys.", 670, 500, canvas.width-100);
+  ctx.fillText("Press '1' for Avada-kedavra - 100 damage.", 670, 540, canvas.width-100);
+  ctx.fillText("Press '2' for Cruciio - 50 damage.", 670, 580, canvas.width-100);
+  ctx.fillText("Opponent can't move for 2 seconds.", 670, 600, canvas.width-100);
+  ctx.fillText("Press '3' for Imperio - 35 damage.", 670, 640, canvas.width-100);
+  ctx.fillText("Opponent moves towards the center for 3 seconds.", 670, 660, canvas.width-100);
 }
 
 function welcome(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.save();
   ctx.font = "20px sans-serif";
   ctx.textAlign = "center";
@@ -88,34 +103,29 @@ function welcome(){
   ctx.fillText("One sunny afternoon they stroll together to the forbidden forest,", canvas.width/2, 180, canvas.width-100);
   ctx.fillText("where they can practice their show and try to beat each other while entertaining Simon 'The Sorcerer' Cowel.", canvas.width/2, 220, canvas.width-100);
   ctx.fillText("Choose your player and let's get it on!", canvas.width/2, 260, canvas.width-100);
-  ronDisplay.onload = function(){ctx.drawImage(ronDisplay, 200, 350)};
-  harryDisplay.onload = function(){ctx.drawImage(harryDisplay, 300, 350)};
-  hermioneDisplay.onload = function(){ctx.drawImage(hermioneDisplay, 400, 350)};
-  luciusDisplay.onload = function(){ctx.drawImage(luciusDisplay, 750, 350)};
-  voldemortDisplay.onload = function(){ctx.drawImage(voldemortDisplay, 850, 350)};
-  umbridgeDisplay.onload = function(){ctx.drawImage(umbridgeDisplay, 950, 350)};
+  ctx.drawImage(ronDisplay, 200, 350);
+  ctx.drawImage(harryDisplay, 300, 350);
+  ctx.drawImage(hermioneDisplay, 400, 350);
+  ctx.drawImage(luciusDisplay, 750, 350);
+  ctx.drawImage(voldemortDisplay, 850, 350);
+  ctx.drawImage(umbridgeDisplay, 950, 350);
   ctx.fillText("All players have 150 health.", canvas.width/2, 380, canvas.width-100);
   ctx.textAlign = "left";
-  ctx.fillText("Harry moves with the Arrow keys.", 150, 500, canvas.width-100);
-  ctx.fillText("Voldy moves with the ESDF keys.", 670, 500, canvas.width-100);
-  ctx.fillText("Press '8' for Expelliarmus - 35 damage.", 150, 540, canvas.width-100);
-  ctx.fillText("Opponent can't cast spells for 4 seconds.", 150, 560, canvas.width-100);
-  ctx.fillText("Press '9' for Stupefy - 35 damage.", 150, 600, canvas.width-100);
-  ctx.fillText("Opponent can't move for 2 seconds.", 150, 620, canvas.width-100);
-  ctx.fillText("Press '0' for Sectum-sempra - 50 damage.", 150, 660, canvas.width-100);
-  ctx.fillText("Press '1' for Avada-kedavra - 100 damage.", 670, 540, canvas.width-100);
-  ctx.fillText("Press '2' for Cruciio - 50 damage.", 670, 580, canvas.width-100);
-  ctx.fillText("Opponent can't move for 2 seconds.", 670, 600, canvas.width-100);
-  ctx.fillText("Press '3' for Imperio - 35 damage.", 670, 640, canvas.width-100);
-  ctx.fillText("Opponent moves towards the center for 3 seconds.", 670, 660, canvas.width-100);
+  if(p1)
+    player1Text(p1);
+  if(p2)
+    player2Text(p2);
   ctx.textAlign = "center";
   ctx.fillText("Click on the 'Play' button at the top to begin!", canvas.width/2, 750, canvas.width-100);
   ctx.restore();
 }
 
-welcome();
+let intervalIdWelcome = setInterval(function(){
+  welcome();
+}, 1000/50)
 
 function startGame(){
+  clearInterval(intervalIdWelcome);
   p1.opponent = p2;
   p2.opponent = p1;
   p1.health = 150;
