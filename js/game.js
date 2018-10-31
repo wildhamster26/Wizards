@@ -31,26 +31,24 @@ gamebtn.addEventListener("click", startGame);
 canvas.addEventListener("mousedown", function(event){
   if (event.offsetY >= 350 && event.offsetY <= 410){
     if (event.offsetX >= 200 && event.offsetX <= 260){
-      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/ron.png")
+      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/ron.png", "ron")
+    }
+    else if (event.offsetX >= 300 && event.offsetX <= 360){
+      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/harry-transparent.png", "harry")
     }
     else if (event.offsetX >= 400 && event.offsetX <= 460){
-      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/hermione.png")
-    }
-    else if (event.offsetX >= 400 && event.offsetX <= 460){
-      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/harry-transparent.png")
+      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/hermione.png", "hermione")
     }
     else if (event.offsetX >= 750 && event.offsetX <= 810){
-      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/lucius.png");
+      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/lucius.png", "lucius");
     }
     else if (event.offsetX >= 850 && event.offsetX <= 910){
-      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/voldemort-transparent.png");
+      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/voldemort-transparent.png", "voldemort");
     }
-    else if (event.offsetX >= 950 && event.offsetX <= 1110){
-      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/umbridge.png");
+    else if (event.offsetX >= 950 && event.offsetX <= 1010){
+      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/umbridge.png", "umbridge");
     } 
   }
-  p1.opponent = p2;
-  p2.opponent = p1;
 });
 
 function drawEverything() {
@@ -75,6 +73,10 @@ function checkCollision(a,b) {
 
 function checkCollisionSpell(a,b) {
   return Math.abs(a.centerX - b.centerX) <= b.width/2 && Math.abs(a.centerY - b.centerY) <= b.height/2;
+}
+
+function player1Text(p1){
+
 }
 
 function welcome(){
@@ -114,6 +116,8 @@ function welcome(){
 welcome();
 
 function startGame(){
+  p1.opponent = p2;
+  p2.opponent = p1;
   p1.health = 150;
   p1.x = ctx.canvas.width - 100;
   p1.y = ctx.canvas.height - 100;

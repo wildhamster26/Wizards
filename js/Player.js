@@ -1,5 +1,5 @@
 class Player extends Component {
-    constructor(ctx, width, height, color, x, y, health, vx, vy, speed, imageSrc) {
+    constructor(ctx, width, height, color, x, y, health, vx, vy, speed, imageSrc, characterName) {
         super(ctx, width, height, color, x, y);
         this.score = 0
         this.speed = speed;
@@ -11,6 +11,7 @@ class Player extends Component {
         this.vy = vy;
         this.character = new Image();
         this.character.src = imageSrc;
+        this.characterName = characterName;
         this.frameIndex = 0;
         this.frameIndexY = 0;
         this.tickCount = 0;
