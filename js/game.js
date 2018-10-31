@@ -2,10 +2,9 @@
 let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
 
-var p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/harry-transparent.png")
-var p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/voldemort-transparent.png");
-p1.opponent = p2;
-p2.opponent = p1;
+var p1;
+var p2;
+
 let intervalId;
 let endHarry = new Image();
 endHarry.src = "./Images/voldemort_infinity_war_death_meme.png";
@@ -15,12 +14,44 @@ let bgPic = new Image();
 bgPic.src = "./Images/grassBg.jpg";
 let harryDisplay = new Image();
 harryDisplay.src = "../Images/harry-display.png";
+let ronDisplay = new Image();
+ronDisplay.src = "../Images/ronDisplay.png";
+let hermioneDisplay = new Image();
+hermioneDisplay.src = "../Images/hermioneDisplay.png";
+let umbridgeDisplay = new Image();
+umbridgeDisplay.src = "../Images/umbridgeDisplay.png";
+let luciusDisplay = new Image();
+luciusDisplay.src = "../Images/luciusDisplay.png";
 let voldemortDisplay = new Image();
 voldemortDisplay.src = "../Images/voldemort-display.png";
 
 let gamebtn = document.querySelector(".play");
 gamebtn.addEventListener("click", startGame);
 
+canvas.addEventListener("mousedown", function(event){
+  if (event.offsetY >= 350 && event.offsetY <= 410){
+    if (event.offsetX >= 200 && event.offsetX <= 260){
+      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/ron.png")
+    }
+    else if (event.offsetX >= 400 && event.offsetX <= 460){
+      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/hermione.png")
+    }
+    else if (event.offsetX >= 400 && event.offsetX <= 460){
+      p1 = new Player(ctx, 32, 32, "red", ctx.canvas.width - 100, ctx.canvas.height - 100, 150, -1, -1, 2, "./Images/harry-transparent.png")
+    }
+    else if (event.offsetX >= 750 && event.offsetX <= 810){
+      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/lucius.png");
+    }
+    else if (event.offsetX >= 850 && event.offsetX <= 910){
+      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/voldemort-transparent.png");
+    }
+    else if (event.offsetX >= 950 && event.offsetX <= 1110){
+      p2 = new Player(ctx, 32, 32, "green", 100, 100, 150, 1, 1, 2, "./Images/umbridge.png");
+    } 
+  }
+  p1.opponent = p2;
+  p2.opponent = p1;
+});
 
 function drawEverything() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -55,9 +86,13 @@ function welcome(){
   ctx.fillText("One sunny afternoon they stroll together to the forbidden forest,", canvas.width/2, 180, canvas.width-100);
   ctx.fillText("where they can practice their show and try to beat each other while entertaining Simon 'The Sorcerer' Cowel.", canvas.width/2, 220, canvas.width-100);
   ctx.fillText("Choose your player and let's get it on!", canvas.width/2, 260, canvas.width-100);
+  ronDisplay.onload = function(){ctx.drawImage(ronDisplay, 200, 350)};
   harryDisplay.onload = function(){ctx.drawImage(harryDisplay, 300, 350)};
-  voldemortDisplay.onload = function(){ctx.drawImage(voldemortDisplay, 800, 350)};
-  ctx.fillText("Both players have 150 health.", canvas.width/2, 380, canvas.width-100);
+  hermioneDisplay.onload = function(){ctx.drawImage(hermioneDisplay, 400, 350)};
+  luciusDisplay.onload = function(){ctx.drawImage(luciusDisplay, 750, 350)};
+  voldemortDisplay.onload = function(){ctx.drawImage(voldemortDisplay, 850, 350)};
+  umbridgeDisplay.onload = function(){ctx.drawImage(umbridgeDisplay, 950, 350)};
+  ctx.fillText("All players have 150 health.", canvas.width/2, 380, canvas.width-100);
   ctx.textAlign = "left";
   ctx.fillText("Harry moves with the Arrow keys.", 150, 500, canvas.width-100);
   ctx.fillText("Voldy moves with the ESDF keys.", 670, 500, canvas.width-100);
